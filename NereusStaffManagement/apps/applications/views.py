@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.forms import ModelForm
 from django import forms
 from NereusStaffManagement.apps.applications.models import Application
@@ -65,3 +65,7 @@ def index(request):
 		return render(request, 'applications/index.html', {'apps': applications})
 	else:
 		return render(request, 'applications/index.html')
+
+def viewapplication(request, applicationid):
+	application = get_object_or_404(Application, pk=applicationid)
+	return render(request, 'applications/view.html', {'application': application})

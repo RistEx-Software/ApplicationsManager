@@ -9,7 +9,6 @@ from django import forms
 def user_exists(username):
 	return User.objects.filter(username=username).exists()
 
-
 # Create your views here.
 class RegistrationForm(ModelForm):
 	class Meta:
@@ -39,3 +38,10 @@ def register(request):
 	
 
 	return render(request, 'account/register.html', {'form': form})
+
+
+def profile(request):
+	return render(request, 'account/profile.html')
+
+def impersonate(request):
+	pass

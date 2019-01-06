@@ -9,8 +9,19 @@
     text-align: center;
 }
 
+h2 {
+  font-size: 140%;
+  border-bottom: 1px solid #dfdfdf;
+  color:#0D9CE0;
+}
+
 .content {
     padding-top: 5%;
+}
+
+.listbox {
+    margin: 2%;
+    padding: 2%;
 }
 
 @keyframes fadein {

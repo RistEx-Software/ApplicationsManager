@@ -27,6 +27,12 @@ SECRET_KEY = 'z(x*-6luwcl@8#asjod##zha_@majgi889y8-%#%!fp@xd3!ho'
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
+#
+# This is so we can test Django's email system without having a running mail
+# server for simple emails. It will dump to the console what the email would be.
+if DEBUG:
+    EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
 ALLOWED_HOSTS = []
 
 ADMINS = (

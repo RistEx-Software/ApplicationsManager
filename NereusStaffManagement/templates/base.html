@@ -27,15 +27,18 @@
         <li><a href="/">Nereus</a></li>
         {% if user.is_authenticated %}
         <li style="float:right"><a class="active" href="{% url 'account:logout' %}">Logout</a></li>
-        <li style="float:right"><a href="/">Profile</a></li>
+        <li style="float:right"><a href="{% url 'account:profile' %}">Profile</a></li>
+        <!-- This should only show if they are verified as staff in database.
         <li style="float:right" class="dropdown">
             <a href="#" class="dropbtn">Server</a>
             <div class="dropdown-content">
                 <a href="#">Status</a>
                 <a href="#">Reports</a>
                 <a href="#">Punishments</a>
+                <a href="#">Applications</a>
             </div>
         </li>
+        -->
         <li style="float:right;" class="specialp"><p>Welcome, {% if user.first_name and user.last_name %}{{ user.first_name }} {{ user.last_name }}{% else %}{{ user.username }}{% endif %}
         {% else %}
             <li style="float:right"><a class="active" href="{% url 'account:login' %}">Login</a></li>

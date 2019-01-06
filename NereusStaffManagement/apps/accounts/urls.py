@@ -21,7 +21,24 @@ from NereusStaffManagement.apps.accounts import views as account_views
 urlpatterns = [
     path('login/', auth_views.LoginView.as_view(template_name = 'account/login.html'), name = 'login'),
    	path('logout/', auth_views.LogoutView.as_view(), name = 'logout'),
-	path('register/', account_views.register, name='register'),
+	path('register/', account_views.register, name = 'register'),
+    path('profile/', account_views.profile, name = 'profile'),
+	
+	# User lost their account.
+	path('lost/', auth_views.PasswordResetView.as_view(template_name='account/password_reset.html',
+                                                    email_template_name='account/password_reset_email.txt', success_url="/account/lost/done/"), name='password_reset'),
+	path('lost/done/', auth_views.PasswordResetDoneView.as_view(template_name='account/password_email.html'), name='password_reset_done'),
+	path('reset/<uidb64>/<token>/', auth_views.PasswordResetConfirmView.as_view(template_name = 'account/password_confirm.html', success_url="/account/reset/done/"), name = 'password_reset_confirm'),
+	path('reset/done/', auth_views.PasswordResetCompleteView.as_view(template_name='account/password_complete.html'),
+	     name='password_reset_complete'),
+	
+	# User is logged in and wants to change their password.
+    path('change/', auth_views.PasswordChangeView.as_view(), name='password_change'),
+    path('change/done/', auth_views.PasswordChangeDoneView.as_view(), name = 'password_change_done'),
+	
+	# A special impersonation feature for superusers.
+	path('impersonate/', account_views.impersonate, name='impersonate'),
+
 
 	# XXX: TODO get this done next.
     #path('register/', authplus.register, account_page, name='register'),

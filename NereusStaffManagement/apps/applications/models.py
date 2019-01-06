@@ -15,6 +15,9 @@ class Application(models.Model):
 	# Email, realname, and such will be included in the user.
 	username = models.ForeignKey(User, on_delete=models.CASCADE)
 
+	# The date they decided to make the application
+	datetime = models.DateTimeField(auto_now=True)
+
 	# User's in-game name
 	ign = models.CharField(max_length=16)
 
@@ -45,4 +48,8 @@ class Application(models.Model):
 	scenario2 = models.TextField(null=True)
 	scenario3 = models.TextField(null=True)
 
-
+	def GetName(self):
+		if self.username.first_name and self.username.last_name:
+			return "%s %s" % (self.username.first_name, self.username.last_name)
+		else:
+			return self.username.username

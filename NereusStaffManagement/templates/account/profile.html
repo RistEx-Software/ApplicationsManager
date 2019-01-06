@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head %}
+<link rel="stylesheet"  href="{% static "css/index.css" %}" />
+<title>Nereus Staff | Profile</title>
+{% endblock %}
+
+{% block body %}
+<div class="content">
+	<div class="bg-text box content">
+		{% if user.is_authenticated %}
+            <h1> Welcome, {{ user.username }} </h1>
+            <p>This is your profile.</p>
+            </br>
+            <h2>Account status: urmum</h2>
+			<a href="{% url 'account:password_reset' %}"><p>Click here to change your password.</p></a>
+        {% else %}
+            <h1>Oh?</h1>
+            </br>
+			<p>You are currently not logged in. You can <a href="{% url 'account:register' %}">create an account</a> if you do not have one.</p>
+		{% endif %}
+	</div>
+	<div class="listbox">
+	<h2>THINGS ARE HAPPENING!</h2>
+	<ol>
+		{% if apps %}
+			{% for deal in apps %}
+				<li>{{ deal.username.GetName }}</li>
+			{% endfor %}
+		{% endif %}
+	</ol>
+	</div>
+</div>
+{% endblock %}

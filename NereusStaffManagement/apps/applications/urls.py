@@ -20,5 +20,6 @@ from NereusStaffManagement.apps.applications import views
 
 urlpatterns = [
 	path('', views.index, name='index'),
-	path('apply/', views.apply, name='apply'),
+	path('apply/', views.apply, name = 'apply'),
+	path('view/<applicationid>/', views.viewapplication, name='view'),
 ]

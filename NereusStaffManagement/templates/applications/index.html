@@ -3,7 +3,7 @@
 
 {% block head %}
 <link rel="stylesheet"  href="{% static "css/index.css" %}" />
-<title>Nereus Staff</title>
+<title>Nereus Staff | Index</title>
 {% endblock %}
 
 {% block body %}
@@ -15,14 +15,19 @@
 			<p>Welcome, {{ user.username }}</p>
 			<a href="{% url 'account:login' %}"><p>Click here to access the logging page.</p></a>
 			<a href="{% url 'applications:apply' %}">Apply to be a staff member on Nereus</a>
-			{% if apps %}
-				{% for deal in apps %}
-					<span>{{ deal }}</span>
-				{% endfor %}
-			{% endif %}
 		{% else %}
 			<p>You are currently not logged in. You can <a href="{% url 'account:register' %}">create an account</a> if you do not have one.</p>
 		{% endif %}
+	</div>
+	<div class="listbox box">
+	<h2>Applications Pending Review</h2>
+	<ol>
+		{% if apps %}
+			{% for deal in apps %}
+				<li>{{ deal.GetName }} made an application on {{ deal.datetime | date }} -- <a href="{% url 'applications:view' applicationid=deal.pk %}">view</a></li>
+			{% endfor %}
+		{% endif %}
+	</ol>
 	</div>
 </div>
 {% endblock %}
