@@ -1,0 +1,50 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+<meta name="og:site_name" content="Nereus Staff">
+<meta name="og:type" content="website">
+<meta name="og:image" content="{% static "img/nereusv2.jpg" %}">
+<meta name="og:title" content="Nereus Staff | Landing page.">
+<meta name="og:url" content="https://staff.nereus.rip">
+<meta name="theme-color" content="#4f4f4f">
+<meta name="og:description" content="Welcome to the staff page for Nereus.">
+        
+<link rel="stylesheet" type="text/css" href="{% static "css/base.css" %}">
+<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+
+{% block head %}
+{% endblock %}
+</head>
+
+<body>
+<dev class="navbar">
+    <ul>
+        <li><a href="/">Nereus</a></li>
+        {% if user.is_authenticated %}
+        <li style="float:right"><a class="active" href="{% url 'account:logout' %}">Logout</a></li>
+        <li style="float:right"><a href="/">Profile</a></li>
+        <li style="float:right" class="dropdown">
+            <a href="#" class="dropbtn">Server</a>
+            <div class="dropdown-content">
+                <a href="#">Status</a>
+                <a href="#">Reports</a>
+                <a href="#">Punishments</a>
+            </div>
+        </li>
+        <li style="float:right;" class="specialp"><p>Welcome, {% if user.first_name and user.last_name %}{{ user.first_name }} {{ user.last_name }}{% else %}{{ user.username }}{% endif %}
+        {% else %}
+            <li style="float:right"><a class="active" href="{% url 'account:login' %}">Login</a></li>
+        {% endif %}
+    </ul>
+</dev>
+
+{% block body %}
+{% endblock %}
+</body>
+
+</html>

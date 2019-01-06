@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head %}
+<link rel="stylesheet"  href="{% static "css/index.css" %}" />
+<title>Nereus Staff</title>
+{% endblock %}
+
+{% block body %}
+<div class="bg-text box">
+    <h1> Nereus Staff Page </h1>
+    <p>This is the Nereus Network logging system.</p>
+	{% if user.is_authenticated %}
+		<p>Welcome, {{ user.username }}</p>
+		<a href="{% url 'account:login' %}"><p>Click here to access the logging page.</p></a>
+		<a href="{% url 'applications:apply' %}">Apply to be a staff member on Nereus</a>
+		{% if apps %}
+			{% for deal in apps %}
+				<span>{{ deal }}</span>
+			{% endfor %}
+		{% endif %}
+    {% else %}
+    	<p>You are currently not logged in. You can <a href="{% url 'account:register' %}">create an account</a> if you do not have one.</p>
+	{% endif %}
+    </br>
+</div>
+{% endblock %}

@@ -1,0 +1,139 @@
+.bg-image {
+    /* The image used */
+    background-color: hsl(0, 3%, 78%);
+
+    /* Add the blur effect */
+    -webkit-filter: blur(5px);
+    -moz-filter: blur(5px);
+    -o-filter: blur(5px);
+    -ms-filter: blur(5px);
+    filter: blur(5px);
+
+
+    /* Full height */
+    height: 100%;
+
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: fixed;
+    left: 0;
+    right: 0;
+    z-index: 1;
+    animation: fadein 1s;
+    -moz-animation: fadein 1s;
+    -webkit-animation: fadein 1s;
+    -o-animation: fadein 1s;
+}
+
+.content {
+    margin: 0 5% 0 5%;
+}
+
+/* Position text in the middle of the page/image */
+.bg-color {
+    background-color: hsl(0, 3%, 78%);
+
+}
+
+.bg-text-top {
+    font-size: 85%;
+    letter-spacing: 1px;
+    color: black;
+    top: 10%;
+    z-index: 2;
+    text-align: center;
+    animation: fadein 1s;
+    -moz-animation: fadein 1s;
+    -webkit-animation: fadein 1s;
+    -o-animation: fadein 1s;
+
+}
+.app-box {
+    padding: 2%;
+}
+.bg-text {
+    font-size: 90%;
+    letter-spacing: 1px;
+    line-height: 10px; /* height of text */ 
+}
+
+hr.style{
+	border-top: 1px solid #8c8b8b;
+}
+
+.button {
+    background-color: #ffffff; /* Green */
+    border: none;
+    color: white;
+    padding: 8px 64px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 40%;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+    cursor: pointer;
+  }
+
+  h4 {
+    border-left: 10px solid rgba(255,255,255,0.9);
+    background-color: rgba(255,255,255,1);
+  } 
+.infotext {
+    text-align: left;
+
+}
+
+.apptext {
+    text-align: left;
+    font-size: 16px;
+    word-wrap: break-word;
+}
+
+
+.subbutton {
+    background-color: white;
+    color: black;
+    border: 2px solid #555555;
+}
+
+.subbutton:hover {
+    background-color: #555555;
+    color: white;
+}
+
+@keyframes fadein {
+    from {
+        opacity:0;
+    }
+    to {
+        opacity:1;
+    }
+}
+@-moz-keyframes fadein { /* Firefox */
+    from {
+        opacity:0;
+    }
+    to {
+        opacity:1;
+    }
+}
+@-webkit-keyframes fadein { /* Safari and Chrome */
+    from {
+        opacity:0;
+    }
+    to {
+        opacity:1;
+    }
+}
+@-o-keyframes fadein { /* Opera */
+    from {
+        opacity:0;
+    }
+    to {
+        opacity: 1;
+    }
+}

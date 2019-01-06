@@ -1,0 +1,123 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head %}
+<link rel="stylesheet"  href="{% static "css/apply.css" %}" />
+{% endblock %}
+
+{% block body %}
+<div class="content">
+	<div class="bg-text-top">
+		<h1> Nereus Staff Application Form </h1>
+	</div>
+
+	<div class="app-box box">
+			<div class="apptext">
+				<h2>Here is where you apply for our staff team, here are some things to know.</h2>
+				<div>
+					<ul>
+						<li>Follow server guidlines and rules</li>
+						<li>Make sure you know the rules and guidlines</li>
+						<li>Fill out this application with as much detail as possible</li>
+					<ul>
+				</div>
+			</div>
+			<form method="post">
+			{% csrf_token %}
+
+			<hr/>
+			<table>
+				<tr>
+					<th>{{ form.ign.label_tag }}</th>
+					<td>
+						{{ form.ign.errors }}
+						{{ form.ign }}
+					</td>
+				</tr>
+
+				<tr>
+					<th>{{ form.age.label_tag }}</th>
+					<td>
+						{{ form.age.errors }}
+						{{ form.age }}
+					</td>
+				</tr>
+				<tr>
+					<th>{{ form.gender.label_tag }}</th>
+					<td>
+						{{ form.gender.errors }}
+						{{ form.gender }}
+					</td>
+				</tr>
+							<tr>
+					<th>{{ form.discord.label_tag }}</th>
+					<td>
+						{{ form.discord.errors }}
+						{{ form.discord }}
+					</td>
+				</tr>
+				<tr>
+					<th>{{ form.microphone.label_tag }}</th>
+					<td>
+						{{ form.microphone.errors }}
+						{{ form.microphone }}
+					</td>
+				</tr>
+				<tr>
+					<th>{{ form.country.label_tag }}</th>
+					<td>
+						{{ form.country.errors }}
+						{{ form.country }}
+					</td>
+				</tr>
+				<tr>
+					<th>{{ form.screenshare.label_tag }}</th>
+					<td>
+						{{ form.screenshare.errors }}
+						{{ form.screenshare }}
+					</td>
+				</tr>
+				<tr>
+					<th>{{ form.timededication.label_tag }}</th>
+					<td>
+						{{ form.timededication.errors }}
+						{{ form.timededication }}
+					</td>
+				</tr>
+			</table>
+			<h4> Now tell us a bit about you. </h4>
+			<table>
+				<tr>
+					<th>{{ form.hirereason.label_tag }}</th>
+					<td>
+						{{ form.hirereason.errors }}
+						{{ form.hirereason }}
+					</td>
+				</tr>
+				<tr>
+					<th>{{ form.scenario1.label_tag }}</th>
+					<td>
+						{{ form.scenario1.errors }}
+						{{ form.scenario1 }}
+					</td>
+				</tr>
+					<tr>
+					<th>{{ form.scenario2.label_tag }}</th>
+					<td>
+						{{ form.scenario2.errors }}
+						{{ form.scenario2 }}
+					</td>
+				</tr>
+					<tr>
+					<th>{{ form.scenario3.label_tag }}</th>
+					<td>
+						{{ form.scenario3.errors }}
+						{{ form.scenario3 }}
+					</td>
+				</tr>
+			</table>
+			<button class="button subbutton" type="submit">Submit</button>
+			</form>
+	</div>
+</div> <!-- class="content" -->
+{% endblock %}
