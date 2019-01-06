@@ -1,0 +1,165 @@
+/*
+  catalyst.wirephire.com
+  @update: 12.01.2013
+*/
+
+html {
+  border-top: 2px solid #0d9ce0;
+}
+
+body {
+  background-image: url('/web/20150802131138im_/http://catalyst.wirephire.com/static/public/img/bg.png');
+  background-repeat: repeat;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 12px;
+  text-shadow: 0 1px 4px rgba(150, 150, 150, 0.5);
+  color: #4d4d4f;
+  text-align: center;
+}
+
+a {
+  color: #0d9ce0;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #787d88;
+  text-decoration: underline;
+}
+
+header {
+  height: 100px;
+  padding-bottom: 16px;
+  padding-top: 8px;
+}
+
+#logo {
+  background: url('/web/20150802131138im_/http://catalyst.wirephire.com/static/public/img/logo.png') no-repeat;
+  height: 100px;
+}
+
+#logo h1 {
+  margin: 0;
+  padding: 0;
+  text-indent: -9999px;
+}
+
+menu ul {
+  font-size: 14px;
+  display: inline;
+  float: right;
+  list-style: none;
+  margin-top: -70px;
+}
+
+menu ul li{
+  float: left;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: 8px;
+}
+
+menu ul#nav li a {
+  color: #4d4d4f;
+  text-decoration: none;
+}
+
+menu ul#nav li a:hover {
+  color: #787d88;
+  text-decoration: underline;
+}
+
+#nav .home {
+  background: url('/web/20150802131138im_/http://catalyst.wirephire.com/static/public/img/nav/home.png') no-repeat;
+  text-indent: 3px;
+}
+
+#nav .arch {
+  background: url('/web/20150802131138im_/http://catalyst.wirephire.com/static/public/img/nav/arch.png') no-repeat;
+  text-indent: 2px;
+}
+
+#nav .community {
+  background: url('/web/20150802131138im_/http://catalyst.wirephire.com/static/public/img/nav/community.png') no-repeat;
+  text-indent: 5px;
+}
+
+#nav .wiki {
+  background: url('/web/20150802131138im_/http://catalyst.wirephire.com/static/public/img/nav/wiki.png') no-repeat;
+  text-indent: 6px;
+}
+
+#nav .workshop {
+  background: url('/web/20150802131138im_/http://catalyst.wirephire.com/static/public/img/nav/workshop.png') no-repeat;
+  text-indent: 6px;
+}
+
+article {
+  width: 95%;
+  margin: 0 auto;
+  text-align: left;
+}
+
+.box {
+  background: rgb(255,255,255);
+  background: -moz-radial-gradient(center, ellipse cover, rgba(255,255,255,1) 0%, rgba(229,229,229,1) 100%);
+  background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%,rgba(255,255,255,1)), color-stop(100%,rgba(229,229,229,1)));
+  background: -webkit-radial-gradient(center, ellipse cover, rgba(255,255,255,1) 0%,rgba(229,229,229,1) 100%);
+  background: -o-radial-gradient(center, ellipse cover, rgba(255,255,255,1) 0%,rgba(229,229,229,1) 100%);
+  background: -ms-radial-gradient(center, ellipse cover, rgba(255,255,255,1) 0%,rgba(229,229,229,1) 100%);
+  background: radial-gradient(ellipse at center, rgba(255,255,255,1) 0%,rgba(229,229,229,1) 100%);
+  border-radius: 4px;
+  -moz-border-radius: 4px;
+}
+
+#infobox {
+  border: 1px solid #d3d7cf;
+  padding-left: 18px;
+  padding-right: 18px;
+  padding-bottom: 3px;
+}
+
+h2 {
+  font-size: 16px;
+  border-bottom: 1px solid #dfdfdf;
+}
+
+#pkgbox {
+  margin-top: 16px;
+  border: 1px solid #d3d7cf;
+  padding-left: 18px;
+  padding-right: 18px;
+  padding-bottom: 3px;
+}
+
+#pkgbox ul li {
+  list-style: none;
+}
+
+footer {
+  padding-top: 7px;
+  text-align: center;
+  font-size: 10px;
+  line-height: 6px;
+}
+/*
+     FILE ARCHIVED ON 13:11:38 Aug 02, 2015 AND RETRIEVED FROM THE
+     INTERNET ARCHIVE ON 08:03:04 Jan 06, 2019.
+     JAVASCRIPT APPENDED BY WAYBACK MACHINE, COPYRIGHT INTERNET ARCHIVE.
+
+     ALL OTHER CONTENT MAY ALSO BE PROTECTED BY COPYRIGHT (17 U.S.C.
+     SECTION 108(a)(3)).
+*/
+/*
+playback timings (ms):
+  LoadShardBlock: 161.156 (3)
+  esindex: 0.008
+  captures_list: 176.237
+  CDXLines.iter: 10.715 (3)
+  PetaboxLoader3.datanode: 148.441 (4)
+  exclusion.robots: 0.159
+  exclusion.robots.policy: 0.147
+  RedisCDXSource: 1.533
+  PetaboxLoader3.resolve: 31.336 (2)
+  load_resource: 36.134
+*/

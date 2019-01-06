@@ -21,7 +21,7 @@ class CreateApplication(ModelForm):
 			'country': _('What country do you live in?'),
 			'screenshare': _('Can you screen share?'),
 			'timededication': _('How much time can you dedicate to Nereus?'),
-			'hirereason': _('Why should we hire you?'),
+			'hirereason': _('Is there anything specific that inspired you to want to join the staff team?'),
 			'scenario1': _('A player has begun an argument with another player and now they are both arguing in the chat constantly. What do you do?'),
 			'scenario2': _('A player has found a bug and they have continued to abuse the bug without telling any staff. What do you do?'),
 			'scenario3': _('A player has been caught scamming others for in-game items causing other players to get annoyed and toxic in the chat. What do you do?'),
@@ -41,8 +41,13 @@ def apply(request):
 	form = CreateApplication(request.POST, initial=request.GET)
 	if request.POST and form.is_valid():
 		# the user clicked submit. Check their details
-		form.username = request.user
-		pass
+		someform = form.save(commit=False)
+		someform.username = request.user
+		# Save the items to the database for later
+		someform.save()
+		# TODO: send a notification to interested parties.
+		# Now we return the "Done" page.
+		return render(request, 'applications/finished.html')
 	else:
 		form = CreateApplication(initial=request.GET)
 

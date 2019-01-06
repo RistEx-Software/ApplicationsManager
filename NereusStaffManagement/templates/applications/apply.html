@@ -14,19 +14,27 @@
 	<div class="app-box box">
 			<div class="apptext">
 				<h2>Here is where you apply for our staff team, here are some things to know.</h2>
-				<div>
-					<ul>
-						<li>Follow server guidlines and rules</li>
-						<li>Make sure you know the rules and guidlines</li>
-						<li>Fill out this application with as much detail as possible</li>
-					<ul>
-				</div>
+				<p>Welcome to the Nereus Trainee Application form.<br/>
+				<br/>
+				As a Trial-Moderator, you will undergo a 2 month trial in order to become a Full Moderator. As a staff member you will assist players with any concerns, including answering questions and punishing rule violators, alongside interacting with the community and staff team. You will also get the opportunity to gain extra responsibilities and further help Nereus.<br/>
+				<ul>
+					<li>Follow server guidlines and rules</li>
+					<li>Make sure you know the rules and guidlines</li>
+					<li>Fill out this application with as much detail as possible</li>
+					<li>Be completely honest in your application.</li>
+				</ul>
+				<p>
+				You will receive a response to your application within 10 days, where you will be informed if you have been invited to an interview, or denied.<br/>
+				<span style="color:red;">Please be patient while waiting for your application to be answered. If you ask any staff to review your application, it will be denied.</span><br/>
+				<br/>
+				Good luck with filling out the application!<br/>
+				</p>
 			</div>
 			<form method="post">
 			{% csrf_token %}
 
-			<hr/>
-			<table>
+			<h2>Background Information</h2>
+			<table class="aboutyou">
 				<tr>
 					<th>{{ form.ign.label_tag }}</th>
 					<td>
@@ -85,8 +93,8 @@
 					</td>
 				</tr>
 			</table>
-			<h4> Now tell us a bit about you. </h4>
-			<table>
+			<h2>All About You</h2>
+			<table class="explainyourreasoningplz">
 				<tr>
 					<th>{{ form.hirereason.label_tag }}</th>
 					<td>

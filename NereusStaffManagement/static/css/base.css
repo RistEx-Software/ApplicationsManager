@@ -2,8 +2,18 @@ body {
 	background-image: url('/static/img/bg.png');
 	background-repeat: repeat;
     text-shadow: 0 1px 4px rgba(150, 150, 150, 0.5);
-    color: #4f4f4f;
+    color: #4d4d4f;
     font-family: 'Open Sans', sans-serif;
+
+    animation: fadein 400ms;
+    -moz-animation: fadein 400ms;
+    -webkit-animation: fadein 400ms;
+    -o-animation: fadein 400ms;
+}
+
+.navbar {
+    position: fixed;
+    width: 99%;
 }
 
 .navbar ul {
@@ -49,10 +59,11 @@ body {
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
+
 }
   
 .navbar li a:hover, .dropdown:hover .dropbtn {
-    background-color: red;
+    background-color: grey;
 }
   
 .navbar li.dropdown {
@@ -62,10 +73,15 @@ body {
 .dropdown-content {
     display: none;
     position: absolute;
-    background-color: #f9f9f9;
+    background-color: #383838;
     min-width: 160px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
+
+    animation: fadein 400ms;
+    -moz-animation: fadein 400ms;
+    -webkit-animation: fadein 400ms;
+    -o-animation: fadein 400ms;
 }
   
 .dropdown-content a {
@@ -82,6 +98,16 @@ body {
   
 .dropdown:hover .dropdown-content {
     display: block;
+}
+
+a {
+  color: #0d9ce0;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #787d88;
+  text-decoration: underline;
 }
 
 .box {
@@ -106,6 +132,6 @@ input[type="text"], input[type="number"], input[type="password"], textarea, sele
     border-right-color: grey;
     border-bottom-color: grey;
     border-left-color: grey;
-    border-radius: 4px;
-    
+    border-radius: 3px;
+    padding: 3px;
 }
