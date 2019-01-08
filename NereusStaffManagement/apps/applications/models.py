@@ -9,11 +9,18 @@ TIME_CHOICES = (
 	('5', 'More'),
 )
 
+APPLICATION_STATUS = (
+	('0', 'Pending'),
+	('1', 'Denied'),
+	('2', 'Approved'),
+)
+
+
 # This is a staff application, they will likely
 # need to register/login to use this.
 class Application(models.Model):
 	# Email, realname, and such will be included in the user.
-	username = models.ForeignKey(User, on_delete=models.CASCADE)
+	username = models.ForeignKey(User, on_delete=models.DO_NOTHING)
 
 	# The date they decided to make the application
 	datetime = models.DateTimeField(auto_now=True)
@@ -48,8 +55,18 @@ class Application(models.Model):
 	scenario2 = models.TextField(null=True)
 	scenario3 = models.TextField(null=True)
 
-	def GetName(self):
-		if self.username.first_name and self.username.last_name:
-			return "%s %s" % (self.username.first_name, self.username.last_name)
-		else:
-			return self.username.username
+	# Status -- are they pending, approved, or denied?
+	status = models.CharField(max_length=2, choices=APPLICATION_STATUS, default='0')
+	# The first staff member to approve it
+	firstapproval = models.ForeignKey(User, on_delete=models.DO_NOTHING, related_name="firstapproval", null=True, blank=True)
+	# The second staff member to approve it
+	secondapproval = models.ForeignKey(User, on_delete=models.DO_NOTHING, related_name="secondapproval", null=True, blank=True)
+
+	# The approval time
+	decisiontime = models.DateTimeField(null=True)
+
+	# If they were not approved, what was their denial reason?
+	denialreason = models.TextField(null=True, blank=True)
+
+	#def __str__(self):
+		#return "%s's application on %s" % (self.GetName, self.datetime)

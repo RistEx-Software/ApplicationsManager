@@ -48,8 +48,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.humanize',
     'NereusStaffManagement.apps.accounts',
     'NereusStaffManagement.apps.applications',
+    'NereusStaffManagement.apps.fuckyouzach',
 ]
 
 MIDDLEWARE = [

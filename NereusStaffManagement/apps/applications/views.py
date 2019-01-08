@@ -1,6 +1,8 @@
-from django.shortcuts import render, get_object_or_404
+
+from django.shortcuts import render, get_object_or_404, Http404
 from django.forms import ModelForm
 from django import forms
+from datetime import datetime
 from NereusStaffManagement.apps.applications.models import Application
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.decorators import permission_required
@@ -60,12 +62,56 @@ def liststaffapps(request):
 
 @login_required
 def index(request):
-	if request.user.has_perm("staff.listapps") or request.user.is_staff or request.user.is_superuser:
-		applications = Application.objects.all() # Not actually an error, Visual Code misunderstanding.
-		return render(request, 'applications/index.html', {'apps': applications})
+	if request.user.has_perm("applications.viewallapps") or request.user.is_staff or request.user.is_superuser:
+		allapplications = Application.objects.all()
+		applications = Application.objects.filter(username=request.user)
+		return render(request, 'applications/index.html', {'apps': allapplications, 'yourapps': applications})
 	else:
-		return render(request, 'applications/index.html')
+		applications = Application.objects.filter(username=request.user)
+		return render(request, 'applications/index.html', {'yourapps': applications})
 
+@login_required
 def viewapplication(request, applicationid):
 	application = get_object_or_404(Application, pk=applicationid)
-	return render(request, 'applications/view.html', {'application': application})
+
+	# Staff member is making a change to it.
+	if request.POST:
+		if request.user.has_perm("applications.modifyapp") or request.user.is_staff or request.user.is_superuser or request.user == application.username:
+			if 'AcceptApplication' in request.POST:
+
+				# Only allow them to accept the application once, otherwise they can't do it but only if they're not changing status of the app.
+				if (application.firstapproval == request.user or application.secondapproval == request.user) and application.status != '1':
+					raise forms.FieldError("You can only be one acceptor on an application.")
+
+				# If they're the first approval, set them as such. Otherwise set them as the second approver.
+				if not application.firstapproval or application.status != '0':
+					application.firstapproval = request.user
+				elif not application.secondapproval:
+					application.secondapproval = request.user
+				else:
+					# XXX: wat?
+					raise forms.FieldError("Are you trying to accept an already accepted application?")
+
+				# Okay, if they have both approvers, then the application is considered 'accepted'
+				if application.firstapproval and application.secondapproval:
+					application.status = '2'
+					application.decisiontime = datetime.now()
+				
+				# Commit the changes to the database.
+				application.save()
+
+			elif 'DenyApplication' in request.POST:
+				application.status = '1'
+				application.decisiontime = datetime.now()
+				application.firstapproval = request.user
+				# TODO: Add denial reason to form somehow and save it here.
+				application.save()
+
+		else: # Yeet.
+			raise Http404()
+
+	if request.user.has_perm("applications.viewallapps") or request.user.is_staff or request.user.is_superuser or request.user == application.username:
+		return render(request, 'applications/view.html', {'application': application})
+	else:
+		# They don't have access, so tell them this page doesn't exist.
+		raise Http404()

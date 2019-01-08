@@ -11,6 +11,18 @@ body {
     -o-animation: fadein 400ms;
 }
 
+#denied {
+    color: red;
+}
+
+#pending {
+    color: #FF8833;
+}
+
+#accepted {
+    color: green;
+}
+
 .navbar {
     position: fixed;
     width: 99%;

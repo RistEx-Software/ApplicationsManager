@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load fuckyouzach %}
 
 {% block head %}
 <link rel="stylesheet"  href="{% static "css/index.css" %}" />
@@ -11,23 +12,43 @@
 	<div class="bg-text box content">
 		<h1> Nereus Staff Page </h1>
 		<p>This is the Nereus Network logging system.</p>
-		{% if user.is_authenticated %}
-			<p>Welcome, {{ user.username }}</p>
-			<a href="{% url 'account:login' %}"><p>Click here to access the logging page.</p></a>
-			<a href="{% url 'applications:apply' %}">Apply to be a staff member on Nereus</a>
-		{% else %}
-			<p>You are currently not logged in. You can <a href="{% url 'account:register' %}">create an account</a> if you do not have one.</p>
-		{% endif %}
+		<p>Welcome, {{ user|getname }}</p>
+		<a href="{% url 'account:login' %}"><p>Click here to access the logging page.</p></a>
+		<a href="{% url 'applications:apply' %}">Apply to be a staff member on Nereus</a>
 	</div>
+
+	<div class="listbox box">
+	<h2>Your applications</h2>
+	<ol>
+		{% if yourapps %}
+			{% for app in yourapps %}
+				<li>You filed an application on {{ app.datetime | date }} status: 
+					{% if app.status == '0' %}
+						<span id="pending">{{ app.get_status_display }}</span>
+					{% elif app.status == '1' %}
+						<span id="denied">{{ app.get_status_display }}</span>
+					{% else %}
+						<span id="accepted">{{ app.get_status_display }}</span>
+					{% endif %}
+		 				-- <a href="{% url 'applications:view' applicationid=app.pk %}">view</a></li>
+			{% endfor %}
+		{% else %}
+			<li>You do not have any applicatons. <a href="{% url 'applications:apply' %}">Would you like to apply to Nereus Staff?</a></li>
+		{% endif %}
+	</ol>
+	</div>
+
+	{% if perms.applications.viewapps %}
 	<div class="listbox box">
 	<h2>Applications Pending Review</h2>
 	<ol>
 		{% if apps %}
 			{% for deal in apps %}
-				<li>{{ deal.GetName }} made an application on {{ deal.datetime | date }} -- <a href="{% url 'applications:view' applicationid=deal.pk %}">view</a></li>
+				<li>{{ deal.username|getname }} made an application on {{ deal.datetime | date }} -- <a href="{% url 'applications:view' applicationid=deal.pk %}">view</a></li>
 			{% endfor %}
 		{% endif %}
 	</ol>
 	</div>
+	{% endif %}
 </div>
 {% endblock %}

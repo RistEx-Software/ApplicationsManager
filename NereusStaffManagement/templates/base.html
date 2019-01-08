@@ -1,4 +1,5 @@
 {% load static %}
+{% load fuckyouzach %}
 <!DOCTYPE html>
 <html>
 <head>
@@ -39,7 +40,7 @@
             </div>
         </li>
         -->
-        <li style="float:right;" class="specialp"><p>Welcome, {% if user.first_name and user.last_name %}{{ user.first_name }} {{ user.last_name }}{% else %}{{ user.username }}{% endif %}
+        <li style="float:right;" class="specialp"><p>Welcome, {{user|getname}}
         {% else %}
             <li style="float:right"><a class="active" href="{% url 'account:login' %}">Login</a></li>
         {% endif %}

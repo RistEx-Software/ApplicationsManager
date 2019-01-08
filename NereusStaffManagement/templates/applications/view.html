@@ -1,20 +1,51 @@
 {% extends 'base.html' %}
-{% load static %}
+{% load static fuckyouzach humanize%}
 
 {% block head %}
 <link rel="stylesheet"  href="{% static "css/view.css" %}" />
-<title>Nereus Staff | Index</title>
+<title>Nereus Staff | {{ application.username|getname }}'s Application</title>
 {% endblock %}
 
 {% block body %}
 <div class="content"><center>
 		<div class="bg-text-top">
-				<h2> {{ application.GetName }} ({{ application.username.username }})'s Staff Application </h2>
+				<h2> {{ application.username|getname }} ({{ application.username.username }})'s Staff Application </h2>
 			</div></center>
 	<div class="bg-text box">
+		<!--
+			# Will be added at a later date.
+			<h3> Managment Notes! </h3>
+		-->
+	<h3>Application Information</h3>
+	<div class="item">
+		<span class="label">Status:</span> 
+		{% if application.status == '0' %}
+			<span id="pending">{{ application.get_status_display }}</span>
+		{% elif application.status == '1' %}
+			<span id="denied">{{ application.get_status_display }}</span>
+		{% else %}
+			<span id="accepted">{{ application.get_status_display }}</span>
+		{% endif %}
+	</div>
+	{% if application.firstapproval %}
+		<div class="item"><span class="label">{% if application.status == '1' %}Denied by{% else %}First Approval{% endif %}:</span> {{ application.firstapproval|getname }}</div>
+	{% endif %}
+	{% if application.secondapproval and application.status != '1' %}
+		<div class="item"><span class="label">Second Approval:</span> {{ application.secondapproval|getname }}</div>
+	{% endif %}
+	{# Show the denial time #}
+	{% if application.status == '1' %}
+		<div class="item"><span class="label">Denied at:</span> {{ application.decisiontime|date:"l, F d, Y g:i:s a e" }} ({{ application.decisiontime|naturaltime }})</div>
+	{% elif application.status == '2' %}
+		<div class="item"><span class="label">Accepted on:</span> {{ application.decisiontime|date:"l, F d, Y g:i:s a e" }} ({{ application.decisiontime|naturaltime }})</div>
+	{% endif %}
+	{# Show the denial reason #}
+	{% if application.denialreason %}
+		<div class="item"><span class="label">Denial Reason:</span><br/> {{ application.denialreason }}</div>
+	{% endif %}
 	<h3>Background Information</h3>
 		<div class="item"><span class="label">Username:</span> {{ application.username.username }}</div>
-		<div class="item"><span class="label">Real Name:</span> {{ application.GetName }}</div>
+		<div class="item"><span class="label">Real Name:</span> {{ application.username.get_full_name }}</div>
 		<div class="item"><span class="label">Country:</span> {{ application.country }}</div>
 		<div class="item"><span class="label">Email:</span> {{ application.username.email }}</div>
 		<div class="item"><span class="label">Date Applied:</span> {{ application.datetime | date }}</div>
@@ -40,5 +71,9 @@
 		<span class="label">A player has been caught scamming others for in-game items causing other players to get annoyed and toxic in the chat. What do you do?</span><br/>
 		{{ application.scenario3 }}<br/>
 	</div>
+	<form method="POST">
+		{% csrf_token %}
+		<button name="AcceptApplication" type="submit">Accept</button> <button name="DenyApplication" type="submit">Deny</button>
+	</form>
 </div>
 {% endblock %}

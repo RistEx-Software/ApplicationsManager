@@ -1,9 +1,14 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block head %}
+<link rel="stylesheet"  href="{% static "css/register.css" %}" />
+<title>Nereus | Registration Page</title>
 {% endblock %}
 
 {% block body %}
+<div class="content">
+	<div class="bg-text box">
     <form method="post">
         {% csrf_token %}
         {% for field in form %}
@@ -14,5 +19,7 @@
 			{% endif %}
 		{% endfor %}
         <button class="button loginbutton" type="submit">Register</button>
-    </form>
+	</form>
+</div>
+</div>
 {% endblock %}
