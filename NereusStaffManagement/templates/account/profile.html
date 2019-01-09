@@ -3,36 +3,86 @@
 {% load fuckyouzach %}
 
 {% block head %}
-<link rel="stylesheet"  href="{% static "css/index.css" %}" />
+<link rel="stylesheet"  href="{% static "css/profile.css" %}" />
 <title>Nereus Staff | Profile</title>
 {% endblock %}
 
 {% block body %}
 <div class="content">
-	<div class="bg-text box content">
-		{% if user.is_authenticated %}
-            <h1> Welcome, {{ user|getname }} </h1>
-            <p>This is your profile.</p>
-            <br/>
-			{% if user.is_superuser %}
-				<a href="{% url 'account:impersonate' %}">Impersonate a user</a>
-			{% endif %}
-			<a href="{% url 'account:password_reset' %}"><p>Click here to change your password.</p></a>
-        {% else %}
-            <h1>Oh?</h1>
-            <br/>
-			<p>You are currently not logged in. You can <a href="{% url 'account:register' %}">create an account</a> if you do not have one.</p>
-		{% endif %}
-	</div>
-	<div class="listbox">
-	{% if apps %}
-		<h2>THINGS ARE HAPPENING!</h2>
-		<ol>
-		{% for deal in apps %}
-			<li>{{ deal.username|getname }}</li>
-		{% endfor %}
-		</ol>
-	{% endif %}
+	<div class="bg-text box">
+		<h2>Your profile</h2>
+		<p>This is your account for applying to Nereus and handling all official actions while on Nereus. Please ensure that the information here
+		is correct or it can be difficult to interact with Nereus Staff. The information on this page (with the exception of your username) is not
+		publically available to other users and staff. Only management can view your personal information.</p>
+
+		<form method="POST" class="fieldboxes">
+			<fieldset>
+				<legend>Personal Information</legend>
+
+				<table class="personalinfo">
+					<tr>
+						<th>Username: </th>
+						<td>
+							{{ user.username }}
+						</td>
+					</tr>
+					<tr>
+						<th>{{ personalinfo.first_name.label_tag }}</th>
+						<td>
+							{{ personalinfo.first_name.errors }}
+							{{ personalinfo.first_name }}
+						</td>
+					</tr>
+					<tr>
+						<th>{{ personalinfo.last_name.label_tag }}</th>
+						<td>
+							{{ personalinfo.last_name.errors }}
+							{{ personalinfo.last_name }}
+						</td>
+					</tr>
+					<tr>
+						<th>{{ personalinfo.email.label_tag }}</th>
+						<td>
+							{{ personalinfo.email.errors }}
+							{{ personalinfo.email }}
+						</td>
+					</tr>
+				</table>
+				{% csrf_token %}
+				<input type="button" name="save" type="submit" value="Save"/>
+			</fieldset>
+		</form>
+	
+		<form method="POST" class="fieldboxes">
+			<fieldset>
+				<legend>Change password</legend>
+				<table class="changepassword">
+					<tr>
+						<th>{{ passwordchange.oldpassword.label_tag }}</th>
+						<td>
+							<!-- {{ passwordchange.oldpassword.errors }} -->
+							{{ passwordchange.oldpassword }}
+						</td>
+					</tr>
+					<tr>
+						<th>{{ passwordchange.password1.label_tag }}</th>
+						<td>
+							<!-- {{ passwordchange.password1.errors }} -->
+							{{ passwordchange.password1 }}
+						</td>
+					</tr>
+					<tr>
+						<th>{{ passwordchange.password2.label_tag }}</th>
+						<td>
+							<!-- {{ passwordchange.password2.errors }} -->
+							{{ passwordchange.password2 }}
+						</td>
+					</tr>
+				</table>
+				{% csrf_token %}
+				<input type="button" name="save" type="submit" value="Save"/>
+			</form>
+		</fieldset>
 	</div>
 </div>
 {% endblock %}

@@ -18,6 +18,7 @@
 <link rel="stylesheet" type="text/css" href="{% static "css/base.css" %}">
 <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
 
+
 {% block head %}
 {% endblock %}
 </head>
@@ -27,9 +28,14 @@
     <ul>
         <li><a href="/">Nereus</a></li>
         {% if user.is_authenticated %}
+        <div class="searchfield">
+            <li style="margin-top: 5%;"><input type="text" class="searchbox" id="searchbox" placeholder="Search"/>
+                <div class="searchpopup">Hello World</div>
+            </li>
+        </div>
         <li style="float:right"><a class="active" href="{% url 'account:logout' %}">Logout</a></li>
         <li style="float:right"><a href="{% url 'account:profile' %}">Profile</a></li>
-        <!-- This should only show if they are verified as staff in database.
+       <!-- This should only show if they are verified as staff in database.
         <li style="float:right" class="dropdown">
             <a href="#" class="dropbtn">Server</a>
             <div class="dropdown-content">
@@ -39,7 +45,7 @@
                 <a href="#">Applications</a>
             </div>
         </li>
-        -->
+    -->
         <li style="float:right;" class="specialp"><p>Welcome, {{user|getname}}
         {% else %}
             <li style="float:right"><a class="active" href="{% url 'account:login' %}">Login</a></li>

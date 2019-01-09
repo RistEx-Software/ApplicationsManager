@@ -9,6 +9,19 @@ from django import forms
 def user_exists(username):
 	return User.objects.filter(username=username).exists()
 
+class PasswordChangeForm(forms.Form):
+	oldpassword = forms.CharField(max_length=255, label="Old Password")
+	password1 = forms.CharField(max_length=255, label="Password")
+	password2 = forms.CharField(max_length=255, label="Password (again)")
+
+class PersonalInfoChange(ModelForm):
+	class Meta:
+		model = User
+		fields = ['first_name', 'last_name', 'email']
+		labels = {
+			'email': "E-Mail Address"
+		}
+
 # Create your views here.
 class RegistrationForm(ModelForm):
 	class Meta:
@@ -45,7 +58,19 @@ def register(request):
 
 
 def profile(request):
-	return render(request, 'account/profile.html')
+
+	passwdfm = PasswordChangeForm(request.POST, initial=request.GET)
+	personalfm = PersonalInfoChange(request.POST, initial=request.GET)
+
+	if request.POST:
+		if passwdfm.is_valid():
+			# user changed their password -- verify the passwords match and update it.
+			pass  # TODO
+		if personalfm.is_valid():
+			# User changed their personal account info, update it.
+			pass  # TODO
+	else:
+		return render(request, 'account/profile.html', {'personalinfo': personalfm, 'passwordchange': passwdfm})
 
 def impersonate(request):
 	# First check if they're superuser, superuser can do anything
