@@ -49,16 +49,13 @@ def register(request):
 				auth.login(request, user)
 				# Redirect them to the home.
 				return HttpResponseRedirect(reverse('applications:index'))
-
 	else:
 		form = RegistrationForm(initial=request.GET)
-	
-
+		
 	return render(request, 'account/register.html', {'form': form})
 
 
 def profile(request):
-
 	passwdfm = PasswordChangeForm(request.POST, initial=request.GET)
 	personalfm = PersonalInfoChange(request.POST, initial=request.GET)
 

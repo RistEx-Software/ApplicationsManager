@@ -23,6 +23,9 @@ def rel_path(p):
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'z(x*-6luwcl@8#asjod##zha_@majgi889y8-%#%!fp@xd3!ho'
 
+# Discord's webhook url for sending notifications
+DISCORD_WEBHOOK = "https://canary.discordapp.com/api/webhooks/532753136184459284/4F_tJd34rlru_NL0xhMpBUPk-4_CIM2FQG6CNmwbHetHcbdeIvzKabbZNEvaO2_VeJFT"
+
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
@@ -52,6 +55,7 @@ INSTALLED_APPS = [
     'NereusStaffManagement.apps.accounts',
     'NereusStaffManagement.apps.applications',
     'NereusStaffManagement.apps.fuckyouzach',
+    'NereusStaffManagement.apps.staffmgmt',
 ]
 
 MIDDLEWARE = [

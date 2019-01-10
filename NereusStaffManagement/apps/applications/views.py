@@ -3,9 +3,12 @@ from django.shortcuts import render, get_object_or_404, Http404
 from django.forms import ModelForm
 from django import forms
 from datetime import datetime
+from django.urls import reverse
 from NereusStaffManagement.apps.applications.models import Application
+from NereusStaffManagement.apps.api.views import _ManagerMessage
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.decorators import permission_required
+from django.template import Template, Context
 from django.utils.translation import gettext_lazy as _
 
 # Create your views here.
@@ -47,7 +50,28 @@ def apply(request):
 		someform.username = request.user
 		# Save the items to the database for later
 		someform.save()
-		# TODO: send a notification to interested parties.
+		revbersed = request.build_absolute_uri(reverse("applications:view", args={"applicationid": someform.pk}))
+		# Let interested parties know
+
+		# Send a notification to Discord, I made this a template because it was MUCH easier to render
+		# the message this way.
+		t = Template("""{{request.user}} has filed an application to become staff on Nereus. {{reversed}}
+			```
+Username: {{someform.username.username}}
+Real Name: {{ someform.username.get_full_name }}
+Email: {{ someform.username.email }}
+In-Game Name: {{someform.ign}}
+Age: {{someform.age}}
+Gender: {{someform.gender}}
+Discord ID: {{someform.discord}}
+Country: {{ someform.country }}
+Has microphone: {{ someform.microphone|yesno }}
+Can screenshare: {{ someform.screenshare|yesno }}
+Time dedication: {{ someform.get_timededication_display }}```
+			""")
+
+		# Actually send the message in Discord
+		_ManagerMessage(t.render(Context({'someform': someform, 'request': request, 'reversed': revbersed})))
 		# Now we return the "Done" page.
 		return render(request, 'applications/finished.html')
 	else:
@@ -96,6 +120,7 @@ def viewapplication(request, applicationid):
 				if application.firstapproval and application.secondapproval:
 					application.status = '2'
 					application.decisiontime = datetime.now()
+					_ManagerMessage(f"{request.user} and {application.firstapproval} approved {application.username}'s application.")
 				
 				# Commit the changes to the database.
 				application.save()
@@ -104,6 +129,7 @@ def viewapplication(request, applicationid):
 				application.status = '1'
 				application.decisiontime = datetime.now()
 				application.firstapproval = request.user
+				_ManagerMessage(f"{request.user} denied {application.username}'s application:\n{application.denialreason}'")
 				# TODO: Add denial reason to form somehow and save it here.
 				application.save()
 

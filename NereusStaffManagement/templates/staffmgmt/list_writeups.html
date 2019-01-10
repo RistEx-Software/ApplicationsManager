@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load fuckyouzach %}
+
+{% block head %}
+<link rel="stylesheet"  href="{% static "css/list_writeup.css" %}" />
+<title>Nereus Staff | Write-Ups</title>
+{% endblock %}
+
+{% block body %}	
+	
+	<div class="listbox box">
+	<h2>Write-Ups</h2>
+	<ol>
+		{% if writeups %}
+			{% for writeup in writeups %}
+				<li>{{ writeup.owner|getname }} wrote up {{ writeup.suspect|getname }} -- <a href="{% url 'staffmgmt:view' writeupid=writeup.pk %}">view</a></li>
+			{% endfor %}
+		{% endif %}
+	</ol>
+	</div>
+{% endblock %}

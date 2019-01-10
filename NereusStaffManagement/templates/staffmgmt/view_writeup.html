@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load static fuckyouzach humanize %}
+
+{% block head %}
+<link rel="stylesheet"  href="{% static "css/view_writeup.css" %}" />
+<title>Nereus Staff | {{ application.username|getname }}'s Application</title>
+{% endblock %}
+
+{% block body %}
+<div class="content">
+	{# XXX: remove center tags #}
+	<center>
+		<div class="bg-text-top">
+			<h2> {{ writeup.owner|getname }}'s write-up on {{ writeup.suspect|getname }}</h2>
+		</div>
+	</center>
+	<div class="bg-text box">
+		THINGS ARE HAPPENING!
+	</div>
+</div>
+{% endblock %}

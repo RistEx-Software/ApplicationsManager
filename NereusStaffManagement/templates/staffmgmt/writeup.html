@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head %}
+<link rel="stylesheet"  href="{% static "css/writeup.css" %}" />
+{% endblock %}
+
+{% block body %}
+<div class="content">
+	<div class="bg-text-top">
+		<h1>Write-up another staff member</h1>
+	</div>
+	<div class="app-box box">
+		<p>You may anonymously write-up another staff member for ownership to review if you believe this staff member is not following staffing guidelines.</p>
+		<form method="POST">
+		<table>
+			<tr>
+				<th>{{ form.suspect.label_tag }}</th>
+				<td>
+					{{ form.suspect.errors }}
+					{{ form.suspect }}
+				</td>
+			</tr>
+			<tr>
+				<th>{{ form.subject.label_tag }}</th>
+				<td>
+					{{ form.subject.errors }}
+					{{ form.subject }}
+				</td>
+			</tr>
+			<tr>
+				<th>{{ form.explanation.label_tag }}</th>
+				<td>
+					{{ form.explanation.errors }}
+					{{ form.explanation }}
+				</td>
+			</tr>
+		</table>
+		<button class="button subbutton" type="submit">Submit</button>
+		{% csrf_token %}
+		</form>
+	</div>
+</div>
+
+{% endblock %}

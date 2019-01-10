@@ -14,11 +14,12 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path, include
+from django.urls import path
+
+from NereusStaffManagement.apps.staffmgmt import views
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('', include(('NereusStaffManagement.apps.applications.urls', 'applications'), namespace='applications')),
-    path('account/', include(('NereusStaffManagement.apps.accounts.urls', 'account'), namespace = 'account')),
-    path('writeup/', include(('NereusStaffManagement.apps.staffmgmt.urls', 'staffmgmt'), namespace='staffmgmt')),
+	path('', views.viewwriteups, name = 'list'),
+	path('view/', views.viewwriteup, name = 'view'),
+	path('new/', views.writeup, name='new'),
 ]
