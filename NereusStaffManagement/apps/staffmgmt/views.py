@@ -1,6 +1,6 @@
 from django.shortcuts import render, Http404, get_object_or_404
 from django.http import HttpResponseRedirect
-from django.url import reverse
+from django.urls import reverse
 from django import forms
 from NereusStaffManagement.apps.staffmgmt.models import WriteUp
 from NereusStaffManagement.apps.api.views import _ManagerMessage, _TemplateManagerMessage

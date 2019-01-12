@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 # The write-up.
 class WriteUp(models.Model):
 	# The person who made the writeup
-	owner = models.ForeignKey(User, on_delete=models.DO_NOTHING)
+	owner = models.ForeignKey(User, on_delete=models.DO_NOTHING, related_name="owner")
 
 	# This is only available to upper-staff/management/whatever
 	# and will send a notification to the user in question.
@@ -12,7 +12,7 @@ class WriteUp(models.Model):
 	official = models.BooleanField(default=False)
 
 	# the person in question
-	suspect = models.ForeignKey(User, on_delete=models.DO_NOTHING)
+	suspect = models.ForeignKey(User, on_delete=models.DO_NOTHING, related_name="suspect")
 
 	# Subject/summary of the writeup. It's limited cuz it's a summary not a fucking novel.
 	subject = models.CharField(max_length=128)

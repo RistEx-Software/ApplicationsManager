@@ -71,9 +71,11 @@
 		<span class="label">A player has been caught scamming others for in-game items causing other players to get annoyed and toxic in the chat. What do you do?</span><br/>
 		{{ application.scenario3 }}<br/>
 	</div>
+	{% if application.status == '0' %}
 	<form method="POST">
 		{% csrf_token %}
 		<button name="AcceptApplication" type="submit">Accept</button> <button name="DenyApplication" type="submit">Deny</button>
 	</form>
+	{% endif %}
 </div>
 {% endblock %}

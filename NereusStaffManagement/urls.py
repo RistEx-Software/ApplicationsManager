@@ -20,5 +20,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include(('NereusStaffManagement.apps.applications.urls', 'applications'), namespace='applications')),
     path('account/', include(('NereusStaffManagement.apps.accounts.urls', 'account'), namespace = 'account')),
-    path('writeup/', include(('NereusStaffManagement.apps.staffmgmt.urls', 'staffmgmt'), namespace='staffmgmt')),
+    path('writeup/', include(('NereusStaffManagement.apps.staffmgmt.urls', 'staffmgmt'), namespace = 'staffmgmt')),
+    path('api/', include(('NereusStaffManagement.apps.api.urls', 'api'), namespace='api')),
 ]

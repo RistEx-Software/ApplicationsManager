@@ -149,25 +149,34 @@ input[type="text"], input[type="number"], input[type="password"], input[type="em
 }
 
 /* This is for the search box */
-.searchpopup {
-    display: none;
-    width: 209px;
-    height: 300px;
-    background-color: grey;
+.searchresults {
+    display: block;
+    visibility: hidden; /* search.js changes this */
+    min-width: 13em;
+    padding: 2px;
+    margin-left: 7%;
+    background-color: #3f3f3f;
+    border-radius: 2px;
     position: absolute;
+    z-index: 10;
     top: 40px;
 }
+
+.searchresults a, .searchresults ul, .searchresults li, .searchresults p {
+    /* stop inheriting the fucking navbar css god damn it! */
+    padding: 0 !important;
+}
+
 .searchfield {
     display: inline-block;
     position: relative;
+    padding-top: 0.6em;
 }
+
 .searchbox {
     background: #444 !important;
     border-color: #303030 !important;
     color: lightgray;
-}
-.searchbox:focus + .searchpopup {
-    display: block;
 }
 
 .dropbtn {

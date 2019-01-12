@@ -13,14 +13,9 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-from django.contrib import admin
-from django.urls import path
-
-from NereusStaffManagement.apps.applications import views
+from django.urls import path, include
+from NereusStaffManagement.apps.api import views as api_views
 
 urlpatterns = [
-	path('', views.index, name='index'),
-	path('apply/', views.apply, name = 'apply'),
-    path('denial/<applicationid>/', views.denialreason, name='denial'),
-	path('view/<applicationid>/', views.viewapplication, name='view'),
+    path('search/', api_views.search, name = 'search'),
 ]

@@ -3,58 +3,66 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            
+    <meta name="og:site_name" content="Nereus Staff">
+    <meta name="og:type" content="website">
+    <meta name="og:image" content="{% static "img/nereusv2.jpg" %}">
+    <meta name="og:title" content="Nereus Staff | Landing page.">
+    <meta name="og:url" content="https://staff.nereus.rip">
+    <meta name="theme-color" content="#4f4f4f">
+    <meta name="og:description" content="Welcome to the staff page for Nereus.">
+            
+    <link rel="stylesheet" type="text/css" href="{% static "css/base.css" %}">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
 
-<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-        
-<meta name="og:site_name" content="Nereus Staff">
-<meta name="og:type" content="website">
-<meta name="og:image" content="{% static "img/nereusv2.jpg" %}">
-<meta name="og:title" content="Nereus Staff | Landing page.">
-<meta name="og:url" content="https://staff.nereus.rip">
-<meta name="theme-color" content="#4f4f4f">
-<meta name="og:description" content="Welcome to the staff page for Nereus.">
-        
-<link rel="stylesheet" type="text/css" href="{% static "css/base.css" %}">
-<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <script src="{% static "js/jquery-3.3.1.min.js" %}"></script>
+    <script src="{% static "js/search.js" %}"></script>
+    <script src="{% static "js/notify.min.js" %}"></script>
 
-
-{% block head %}
-{% endblock %}
+    {% block head %}
+    {% endblock %}
 </head>
 
 <body>
-<dev class="navbar">
-    <ul>
-        <li><a href="/">Nereus</a></li>
-        {% if user.is_authenticated %}
-        <div class="searchfield">
-            <li style="margin-top: 5%;"><input type="text" class="searchbox" id="searchbox" placeholder="Search"/>
-                <div class="searchpopup">Hello World</div>
-            </li>
-        </div>
-        <li style="float:right"><a class="active" href="{% url 'account:logout' %}">Logout</a></li>
-        <li style="float:right"><a href="{% url 'account:profile' %}">Profile</a></li>
-       <!-- This should only show if they are verified as staff in database.
-        <li style="float:right" class="dropdown">
-            <a href="#" class="dropbtn">Server</a>
-            <div class="dropdown-content">
-                <a href="#">Status</a>
-                <a href="#">Reports</a>
-                <a href="#">Punishments</a>
-                <a href="#">Applications</a>
+    <dev class="navbar">
+        <ul>
+            <li><a href="/">Nereus</a></li>
+            {% if user.is_authenticated %}
+            <div class="searchfield">
+                <li style="float:right"><input type="text" class="searchbox" id="searchbox" placeholder="Search"/></li>
+                {% csrf_token %}
             </div>
-        </li>
-    -->
-        <li style="float:right;" class="specialp"><p>Welcome, {{user|getname}}
-        {% else %}
-            <li style="float:right"><a class="active" href="{% url 'account:login' %}">Login</a></li>
-        {% endif %}
-    </ul>
-</dev>
+            <li style="float:right"><a class="active" href="{% url 'account:logout' %}">Logout</a></li>
+            <li style="float:right"><a href="{% url 'account:profile' %}">Profile</a></li>
+        <!-- This should only show if they are verified as staff in database.
+            <li style="float:right" class="dropdown">
+                <a href="#" class="dropbtn">Server</a>
+                <div class="dropdown-content">
+                    <a href="#">Status</a>
+                    <a href="#">Reports</a>
+                    <a href="#">Punishments</a>
+                    <a href="#">Applications</a>
+                </div>
+            </li>
+            -->
 
-{% block body %}
-{% endblock %}
+            <li style="float:right" class="specialp"><p>Welcome, {{user|getname}}</p>
+
+            {% else %}
+                <li style="float:right"><a class="active" href="{% url 'account:login' %}">Login</a></li>
+            {% endif %}
+        </ul>
+
+        <div class="searchresults"> Hello World </div>
+    </dev>
+
+    {% block body %}
+    {% endblock %}
 </body>
+
+{% block scripts %}
+{% endblock %}
 
 </html>

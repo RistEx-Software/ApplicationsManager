@@ -15,7 +15,6 @@ APPLICATION_STATUS = (
 	('2', 'Approved'),
 )
 
-
 # This is a staff application, they will likely
 # need to register/login to use this.
 class Application(models.Model):

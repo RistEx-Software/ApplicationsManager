@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load static fuckyouzach %}
+
+{% block head %}
+<link rel="stylesheet"  href="{% static "css/denial.css" %}" />
+{% endblock %}
+
+{% block body %}
+<div class="content">
+	<div class="bg-text-top">
+		<h1>Reason for denying {{ app.username|getname }}'s application.</h1>
+	</div>
+	<div class="app-box box">
+		<p></p>
+		<form method="POST">
+		<table>
+			<tr>
+				<th>{{ form.reason.label_tag }}</th>
+				<td>
+					{{ form.reason.errors }}
+					{{ form.reason }}
+				</td>
+			</tr>
+		</table>
+		<button class="button subbutton" type="submit">Submit</button>
+		{% csrf_token %}
+		</form>
+	</div>
+</div>
+
+{% endblock %}

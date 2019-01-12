@@ -15,7 +15,7 @@
 		is correct or it can be difficult to interact with Nereus Staff. The information on this page (with the exception of your username) is not
 		publically available to other users and staff. Only management can view your personal information.</p>
 
-		<form method="POST" class="fieldboxes">
+		<form method="post" class="fieldboxes">
 			<fieldset>
 				<legend>Personal Information</legend>
 
@@ -49,11 +49,11 @@
 					</tr>
 				</table>
 				{% csrf_token %}
-				<input type="button" name="save" type="submit" value="Save"/>
+				<button class="button loginbutton" type="submit">Save</button>
 			</fieldset>
 		</form>
 	
-		<form method="POST" class="fieldboxes">
+		<form method="post" class="fieldboxes" action="{% url "account:profile" %}">
 			<fieldset>
 				<legend>Change password</legend>
 				<table class="changepassword">
@@ -80,9 +80,9 @@
 					</tr>
 				</table>
 				{% csrf_token %}
-				<input type="button" name="save" type="submit" value="Save"/>
-			</form>
-		</fieldset>
+				<button class="button loginbutton" type="submit">Save</button>
+			</fieldset>
+		</form>
 	</div>
 </div>
 {% endblock %}

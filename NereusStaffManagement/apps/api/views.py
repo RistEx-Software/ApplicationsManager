@@ -1,9 +1,10 @@
 from django.shortcuts import render
 from django.http import JsonResponse
+from django.core import serializers
 from django.template import Template, Context
 from django import forms
 from django.conf import settings
-import requests
+import requests, json
 from NereusStaffManagement.apps.applications.models import Application
 
 # This is mostly an internal function for sending messages to discord
@@ -22,16 +23,39 @@ class SearchForm(forms.Form):
 	query = forms.CharField(max_length=255)
 
 # Create your views here.
-
 def search(request):
 	if request.POST:
 		searchq = SearchForm(request.POST)
 		if searchq.is_valid():
-			objs = Application.objects.filter(name__unaccent__lower__trigram_similar=searchq.cleaned_data['query'])
+			query = searchq.cleaned_data.get('query')
+			objs1 = Application.objects.filter(discord__icontains=query)
+			objs2 = Application.objects.filter(ign__icontains=query)
+			objs3 = Application.objects.filter(username__username__icontains=query)
+			objs = objs1 | objs2 | objs3
+			# Only admins can search by these fields.
+			if request.user.is_superuser:
+				objs4 = Application.objects.filter(username__first_name__icontains=query)
+				objs5 = Application.objects.filter(username__last_name__icontains=query)
+				objs6 = Application.objects.filter(username__email__icontains=query)
+				objs = objs | objs4 | objs5 | objs6
+			
 			if not objs:
 				return JsonResponse({"status": 0, "msg": "Not Found"})
-			return JsonResponse({"status": 1, "msg": objs})
+			
+			# We don't just want to blast all the user's info out into the world
+			# so first what we do is check if they're admin or not.
+			results = []
+			for app in objs:
+				results.append({
+					"username": app.username.username,
+					"ign": app.ign,
+					"discord": app.discord,
+					"applicationid": app.pk,
+					"email": app.username.email if request.user.is_superuser else None,
+					"firstname": app.username.first_name if request.user.is_superuser else None,
+					"lastname": app.username.last_name if request.user.is_superuser else None})
+			return JsonResponse({"status": 1, "msg": "Results", "objects": results})
 		else:
-			return JsonResponse({"status": 0, "msg": "Invalid request"})
+			return JsonResponse({"status": 0, "msg": "Not Found"})
 	else:
 		return JsonResponse({"status": 0, "msg": "Invalid request"})

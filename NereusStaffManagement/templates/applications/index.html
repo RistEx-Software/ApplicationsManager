@@ -15,6 +15,8 @@
 		<p>Welcome, {{ user|getname }}</p>
 		<a href="{% url 'account:login' %}"><p>Click here to access the logging page.</p></a>
 		<a href="{% url 'applications:apply' %}">Apply to be a staff member on Nereus</a>
+
+		<input name="noti" type="button" value="Show notification" onclick="$.notify( 'This is some neat info boiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii', { position:'bottom, right', className: 'info' } );"/>
 	</div>
 
 	<div class="listbox box">
@@ -22,7 +24,7 @@
 	<ol>
 		{% if yourapps %}
 			{% for app in yourapps %}
-				<li>You filed an application on {{ app.datetime | date }} status: 
+				<li>You filed an application on {{ app.datetime | date }}. Application status: 
 					{% if app.status == '0' %}
 						<span id="pending">{{ app.get_status_display }}</span>
 					{% elif app.status == '1' %}
@@ -39,16 +41,50 @@
 	</div>
 
 	{% if perms.applications.viewapps %}
-	<div class="listbox box">
-	<h2>Applications Pending Review</h2>
-	<ol>
-		{% if apps %}
-			{% for deal in apps %}
-				<li>{{ deal.username|getname }} made an application on {{ deal.datetime | date }} -- <a href="{% url 'applications:view' applicationid=deal.pk %}">view</a></li>
-			{% endfor %}
-		{% endif %}
-	</ol>
-	</div>
+		<div class="listbox box">
+			<h2>Applications Pending Review</h2>
+			<ol>
+				{% if apps %}
+					{% for deal in apps %}
+						{% if deal.status == '0' %}
+							<li>{{ deal.username|getname }} made an application on {{ deal.datetime|date:"l, F d, Y" }} -- <a href="{% url 'applications:view' applicationid=deal.pk %}">view application</a></li>
+						{% endif %}		
+					{% endfor %}
+				{% else %}
+					<li>There are apparently no existing applications.</li>
+				{% endif %}
+			</ol>
+		</div>
+
+		<div class="listbox box">
+			<h2>Recently Denied Applications</h2>
+			<ol>
+				{% if apps %}
+					{% for deal in apps %}
+						{% if deal.status == '1' %}
+							<li>{{ deal.username|getname }} had their application denied on {{ deal.decisiontime|date:"l, F d, Y" }} -- <a href="{% url 'applications:view' applicationid=deal.pk %}">view</a></li>
+						{% endif %}
+					{% endfor %}
+				{% else %}
+					<li>There are apparently no existing applications.</li>
+				{% endif %}
+			</ol>
+		</div>
+		
+		<div class="listbox box">
+			<h2>Recently Accepted Applications</h2>
+			<ol>
+				{% if apps %}
+					{% for deal in apps %}
+						{% if deal.status == '2' %}				
+							<li>{{ deal.username|getname }} had their application accepted on {{ deal.decisiontime|date:"l, F d, Y" }} -- <a href="{% url 'applications:view' applicationid=deal.pk %}">view</a></li>
+						{% endif %}
+					{% endfor %}
+				{% else %}
+					<li>There are apparently no existing applications.</li>
+				{% endif %}
+			</ol>
+		</div>
 	{% endif %}
 </div>
 {% endblock %}

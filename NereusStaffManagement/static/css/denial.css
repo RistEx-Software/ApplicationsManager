@@ -1,0 +1,26 @@
+.content {
+	padding-top: 5%;
+	margin: 0 3%;
+}
+
+.bg-text {
+	padding: 2%;
+}
+
+h2 {
+  font-size: 250%;
+  /*border-bottom: 1px solid #dfdfdf;*/
+  color:#0D9CE0;
+}
+
+h3 {
+	border-bottom: 1px solid #dfdfdf;
+    font-size: 140%;
+    color:#0D9CE0;
+}
+.label {
+	white-space: nowrap;
+	font-size: 100%;
+	font-weight: bold;
+    color:#3f3f3f;
+}

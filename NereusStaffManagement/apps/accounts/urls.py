@@ -22,7 +22,7 @@ urlpatterns = [
     path('login/', auth_views.LoginView.as_view(template_name = 'account/login.html'), name = 'login'),
    	path('logout/', auth_views.LogoutView.as_view(), name = 'logout'),
 	path('register/', account_views.register, name = 'register'),
-    path('profile/', account_views.profile, name = 'profile'),
+    path('', account_views.profile, name = 'profile'),
 	
 	# User lost their account.
 	path('lost/', auth_views.PasswordResetView.as_view(template_name='account/password_reset.html',
