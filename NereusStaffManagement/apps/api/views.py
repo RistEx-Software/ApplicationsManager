@@ -19,6 +19,14 @@ def _TemplateManagerMessage(messagecode, **kwargs):
 	t = Template(messagecode)
 	_ManagerMessage(t.render(Context(kwargs)))
 
+# Handle 404 errors
+def page_not_found(request):
+	return render(request, '404.html', status=404)
+
+# Handle 500 errors
+def server_error(request):
+	return render(request, '500.html', status=500)
+
 class SearchForm(forms.Form):
 	query = forms.CharField(max_length=255)
 

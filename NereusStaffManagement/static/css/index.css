@@ -3,16 +3,40 @@
     font-size: 90%;
     letter-spacing: 2.5px;
     z-index: 2;
-    padding: 10%;
-    padding-top: 10%;
     margin: 0 2%;
     text-align: center;
+    margin-bottom: 20%;
 }
 
 h2 {
   font-size: 140%;
   border-bottom: 1px solid #dfdfdf;
   color:#0D9CE0;
+}
+
+.sidebarleft {
+    position: absolute;
+    width: 70%;
+    min-height: 21%;
+    text-align: left;
+    padding: 2%;
+}
+
+.sidebarright fieldset {
+    margin: 1em;
+}
+
+.sidebarright li {
+    text-align: left;
+    list-style-type: none;
+}
+
+.sidebarright {
+    position: absolute;
+    margin-left: 76%;
+    width: 19%;
+    min-height: 21%;
+    letter-spacing: normal;
 }
 
 .content {

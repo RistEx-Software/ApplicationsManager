@@ -15,6 +15,8 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.conf.urls import handler404, handler500
+from NereusStaffManagement.apps.api import views as api_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -23,3 +25,7 @@ urlpatterns = [
     path('writeup/', include(('NereusStaffManagement.apps.staffmgmt.urls', 'staffmgmt'), namespace = 'staffmgmt')),
     path('api/', include(('NereusStaffManagement.apps.api.urls', 'api'), namespace='api')),
 ]
+
+# Set our 404 and 500 error pages
+handler404 = api_views.page_not_found
+handler500 = api_views.server_error

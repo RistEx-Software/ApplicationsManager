@@ -27,7 +27,7 @@ SECRET_KEY = 'z(x*-6luwcl@8#asjod##zha_@majgi889y8-%#%!fp@xd3!ho'
 DISCORD_WEBHOOK = "https://canary.discordapp.com/api/webhooks/532753136184459284/4F_tJd34rlru_NL0xhMpBUPk-4_CIM2FQG6CNmwbHetHcbdeIvzKabbZNEvaO2_VeJFT"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 TEMPLATE_DEBUG = DEBUG
 
 #
@@ -36,7 +36,7 @@ TEMPLATE_DEBUG = DEBUG
 if DEBUG:
     EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 ADMINS = (
     ('Justin Crawford', 'Justin@stacksmash.net'),

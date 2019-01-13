@@ -9,35 +9,40 @@
 
 {% block body %}
 <div class="content">
-	<div class="bg-text box content">
-		<h1> Nereus Staff Page </h1>
-		<p>This is the Nereus Network logging system.</p>
-		<p>Welcome, {{ user|getname }}</p>
-		<a href="{% url 'account:login' %}"><p>Click here to access the logging page.</p></a>
-		<a href="{% url 'applications:apply' %}">Apply to be a staff member on Nereus</a>
+	<div class="bg-text">
+		<div class="sidebarright box">
+			<fieldset>
+				<legend>Links</legend>
+				<p>THINGS ARE HAPPENING!</p>
+				<hr/>
+				<ul>
+					<li><a href="{% url 'applications:apply' %}">Apply to be a staff member</a></li>
+					<li><a href="{% url 'staffmgmt:new' %}">Report another staff member</a></li>
+					<li><a href="{% url 'account:login' %}">View ban/punishment disputes</a></li>
+				</ul>
+			</fieldset>
+		</div>
 
-		<input name="noti" type="button" value="Show notification" onclick="$.notify( 'This is some neat info boiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii', { position:'bottom, right', className: 'info' } );"/>
-	</div>
-
-	<div class="listbox box">
-	<h2>Your applications</h2>
-	<ol>
-		{% if yourapps %}
-			{% for app in yourapps %}
-				<li>You filed an application on {{ app.datetime | date }}. Application status: 
-					{% if app.status == '0' %}
-						<span id="pending">{{ app.get_status_display }}</span>
-					{% elif app.status == '1' %}
-						<span id="denied">{{ app.get_status_display }}</span>
-					{% else %}
-						<span id="accepted">{{ app.get_status_display }}</span>
-					{% endif %}
-		 				-- <a href="{% url 'applications:view' applicationid=app.pk %}">view</a></li>
-			{% endfor %}
-		{% else %}
-			<li>You do not have any applicatons. <a href="{% url 'applications:apply' %}">Would you like to apply to Nereus Staff?</a></li>
-		{% endif %}
-	</ol>
+		<div class="sidebarleft box">
+			<h2>Your applications</h2>
+			<ol>
+				{% if yourapps %}
+					{% for app in yourapps %}
+						<li>You filed an application on {{ app.datetime | date }}. Application status: 
+							{% if app.status == '0' %}
+								<span id="pending">{{ app.get_status_display }}</span>
+							{% elif app.status == '1' %}
+								<span id="denied">{{ app.get_status_display }}</span>
+							{% else %}
+								<span id="accepted">{{ app.get_status_display }}</span>
+							{% endif %}
+								-- <a href="{% url 'applications:view' applicationid=app.pk %}">view</a></li>
+					{% endfor %}
+				{% else %}
+					<li>You do not have any applicatons. <a href="{% url 'applications:apply' %}">Would you like to apply to Nereus Staff?</a></li>
+				{% endif %}
+			</ol>
+		</div>
 	</div>
 
 	{% if perms.applications.viewapps %}

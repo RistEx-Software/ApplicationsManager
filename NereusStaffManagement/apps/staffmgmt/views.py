@@ -46,7 +46,7 @@ def viewwriteup(request, writeupid):
 def writeup(request):
 	# Don't allow randoms to make writeups
 	if not request.user.is_staff or not request.user.is_superuser:
-		return Http404()
+		raise Http404()
 	
 	form = WriteUpForm(request.POST, initial=request.GET)
 	if request.POST and form.is_valid():
