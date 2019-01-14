@@ -23,6 +23,10 @@ body {
     color: green;
 }
 
+#cancelled {
+    color: black;
+}
+
 .navbar {
     position: fixed;
     width: 99%;

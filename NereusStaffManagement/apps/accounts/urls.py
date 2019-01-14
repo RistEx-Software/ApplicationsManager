@@ -32,17 +32,6 @@ urlpatterns = [
 	path('reset/done/', auth_views.PasswordResetCompleteView.as_view(template_name='account/password_complete.html'),
 	     name='password_reset_complete'),
 	
-	# User is logged in and wants to change their password.
-    path('change/', auth_views.PasswordChangeView.as_view(), name='password_change'),
-    path('change/done/', auth_views.PasswordChangeDoneView.as_view(), name = 'password_change_done'),
-	
 	# A special impersonation feature for superusers.
 	path('impersonate/', account_views.impersonate, name='impersonate'),
-
-
-	# XXX: TODO get this done next.
-    #path('register/', authplus.register, account_page, name='register'),
-    #path('lost/', authplus.lost, lost_pages, name='lost'),
-    #path('reset/', authplus.reset, account_page, name='reset'),
-
 ]

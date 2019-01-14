@@ -35,17 +35,29 @@ def search(request):
 	if request.POST:
 		searchq = SearchForm(request.POST)
 		if searchq.is_valid():
+
 			query = searchq.cleaned_data.get('query')
-			objs1 = Application.objects.filter(discord__icontains=query)
-			objs2 = Application.objects.filter(ign__icontains=query)
-			objs3 = Application.objects.filter(username__username__icontains=query)
-			objs = objs1 | objs2 | objs3
-			# Only admins can search by these fields.
+			# Okay here's where things get fun. We don't allow the users/staff to view
+			# other people's applications, but superusers can view it. This affects
+			# search as they should not search for applications by anyone other than themselves.
+			objs = None
+
 			if request.user.is_superuser:
+				objs1 = Application.objects.filter(discord__icontains=query)
+				objs2 = Application.objects.filter(ign__icontains=query)
+				objs3 = Application.objects.filter(username__username__icontains=query)
 				objs4 = Application.objects.filter(username__first_name__icontains=query)
 				objs5 = Application.objects.filter(username__last_name__icontains=query)
 				objs6 = Application.objects.filter(username__email__icontains=query)
-				objs = objs | objs4 | objs5 | objs6
+				objs = objs1 | objs2 | objs3 | objs4 | objs5 | objs6
+			else:
+				# They're not a superuser, just search within their own applications.
+				objs1 = Application.objects.filter(discord__icontains=query, username=request.user)
+				objs2 = Application.objects.filter(ign__icontains=query, username=request.user)
+				# pointless query but whatever.
+				objs3 = Application.objects.filter(username__username__icontains=query, username=request.user)
+				objs = objs1 | objs2 | objs3
+
 			
 			if not objs:
 				return JsonResponse({"status": 0, "msg": "Not Found"})

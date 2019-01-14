@@ -13,12 +13,22 @@
 		<div class="sidebarright box">
 			<fieldset>
 				<legend>Links</legend>
-				<p>THINGS ARE HAPPENING!</p>
+				<p>Places to go</p>
 				<hr/>
 				<ul>
-					<li><a href="{% url 'applications:apply' %}">Apply to be a staff member</a></li>
-					<li><a href="{% url 'staffmgmt:new' %}">Report another staff member</a></li>
-					<li><a href="{% url 'account:login' %}">View ban/punishment disputes</a></li>
+					{% if not user.is_staff and not user.is_superuser %}
+						{# only show "Apply to staff" to the randos #}
+						<li><a href="{% url 'applications:apply' %}">Apply to be a staff member</a></li>
+					{% elif user.is_superuser %}
+						<li><a href="{% url 'account:impersonate' %}">Impersonate a user</a></li>
+						<li><a href="{% url 'admin:index' %}">Django Administration</a></li>
+						<hr/>
+						<li><a href="{% url 'staffmgmt:list' %}">View Writeups</a></li>
+						<li><a href="{% url 'account:login' %}">View ban/punishment disputes (COMING SOON!)</a></li>
+					{% else %}
+						<li><a href="{% url 'staffmgmt:new' %}">Report another staff member</a></li>
+						<li><a href="{% url 'account:login' %}">View ban/punishment disputes (COMING SOON!)</a></li>
+					{% endif %}
 				</ul>
 			</fieldset>
 		</div>
@@ -33,6 +43,8 @@
 								<span id="pending">{{ app.get_status_display }}</span>
 							{% elif app.status == '1' %}
 								<span id="denied">{{ app.get_status_display }}</span>
+							{% elif app.status == '3' %}
+								<span id="cancelled">{{ app.get_status_display }}</span>
 							{% else %}
 								<span id="accepted">{{ app.get_status_display }}</span>
 							{% endif %}

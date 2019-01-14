@@ -1,11 +1,13 @@
 from django.shortcuts import render
 from django.http import HttpResponseRedirect, Http404
 from django.forms import ModelForm
+from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate
 from django.contrib.auth.password_validation import validate_password
 from django.contrib import auth
 from django.urls import reverse
+from django.views import generic
 from django import forms
 
 def user_exists(username):
@@ -25,10 +27,10 @@ class PersonalInfoChange(ModelForm):
 		}
 
 # Create your views here.
-class RegistrationForm(ModelForm):
+class RegistrationForm(UserCreationForm):
 	class Meta:
 		model = User
-		fields = ['first_name', 'last_name', 'email', 'username', 'password']
+		fields = ('first_name', 'last_name', 'email', 'username',)
 
 class ImpersonateForm(forms.Form):
 	person = forms.CharField(max_length=255, label='Username')
@@ -123,3 +125,5 @@ def impersonate(request):
 			return HttpResponseRedirect(reverse('applications:index'))
 		else:
 			return render(request, 'account/impersonate.html', {'form': impernatee})
+	else:
+		raise Http404()

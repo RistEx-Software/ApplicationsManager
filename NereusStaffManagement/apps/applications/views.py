@@ -106,7 +106,7 @@ def denialreason(request, applicationid):
 
 @login_required
 def index(request):
-	if request.user.has_perm("applications.viewallapps") or request.user.is_staff or request.user.is_superuser:
+	if request.user.has_perm("applications.viewallapps") or request.user.is_superuser:
 		allapplications = Application.objects.all().order_by('-datetime')
 		applications = Application.objects.filter(username=request.user).order_by('-datetime')
 		return render(request, 'applications/index.html', {'apps': allapplications, 'yourapps': applications})
@@ -120,7 +120,7 @@ def viewapplication(request, applicationid):
 
 	# Staff member is making a change to it.
 	if request.POST:
-		if request.user.has_perm("applications.modifyapp") or request.user.is_staff or request.user.is_superuser or request.user == application.username:
+		if request.user.has_perm("applications.modifyapp") or request.user.is_superuser or request.user == application.username:
 			if 'AcceptApplication' in request.POST:
 				# Only allow them to accept the application once, otherwise they can't do it but only if they're not changing status of the app.
 				if (application.firstapproval == request.user or application.secondapproval == request.user) and application.status != '1':
@@ -144,6 +144,9 @@ def viewapplication(request, applicationid):
 				if application.firstapproval and application.secondapproval:
 					application.status = '2'
 					application.decisiontime = datetime.now()
+					# Grant the user the staff permission.
+					application.username.is_staff = True
+					application.username.save()
 					_ManagerMessage(f"{request.user} and {application.firstapproval} approved {application.username}'s application.")
 				
 				# Commit the changes to the database.
@@ -151,10 +154,16 @@ def viewapplication(request, applicationid):
 			elif 'DenyApplication' in request.POST:
 				# redirect to a whole new page.
 				return HttpResponseRedirect(reverse("applications:denial", kwargs={"applicationid": application.pk}))
+			elif 'CancelApplication' in request.POST and request.user == application.username:
+				# The user wants to cancel their application
+				application.status = '3'
+				application.decisiontime = datetime.now()
+				application.save()
+				_ManagerMessage(f"{request.user} cancelled their application made on {application.datetime}.")
 		else: # Yeet
 			raise Http404()
 
-	if request.user.has_perm("applications.viewallapps") or request.user.is_staff or request.user.is_superuser or request.user == application.username:
+	if request.user.has_perm("applications.viewallapps") or request.user.is_superuser or request.user == application.username:
 		return render(request, 'applications/view.html', {'application': application})
 	else:
 		# They don't have access, so tell them this page doesn't exist.

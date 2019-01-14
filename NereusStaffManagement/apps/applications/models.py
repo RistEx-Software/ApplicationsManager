@@ -13,11 +13,16 @@ APPLICATION_STATUS = (
 	('0', 'Pending'),
 	('1', 'Denied'),
 	('2', 'Approved'),
+	('3', 'Cancelled'),
 )
 
 # This is a staff application, they will likely
 # need to register/login to use this.
 class Application(models.Model):
+
+	def __str__(self):
+		return "%s on %s -- %s " % (self.username.username, self.datetime.strftime("%l, %F %d, %Y"), self.get_status_display())
+
 	# Email, realname, and such will be included in the user.
 	username = models.ForeignKey(User, on_delete=models.DO_NOTHING)
 
@@ -66,6 +71,3 @@ class Application(models.Model):
 
 	# If they were not approved, what was their denial reason?
 	denialreason = models.TextField(null=True, blank=True)
-
-	#def __str__(self):
-		#return "%s's application on %s" % (self.GetName, self.datetime)

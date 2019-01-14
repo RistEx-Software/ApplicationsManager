@@ -45,7 +45,9 @@ def viewwriteup(request, writeupid):
 @login_required
 def writeup(request):
 	# Don't allow randoms to make writeups
-	if not request.user.is_staff or not request.user.is_superuser:
+	if not request.user.is_staff and not request.user.is_superuser:
+		print("hahaha get 404'd bitch!")
+		print("is_staff = %d\nis_superuser = %d" % (request.user.is_staff, request.user.is_superuser))
 		raise Http404()
 	
 	form = WriteUpForm(request.POST, initial=request.GET)
@@ -57,8 +59,8 @@ def writeup(request):
 		_TemplateManagerMessage("{% load fuckyouzach %}"
 		"{{ form.owner|getname }} wrote up {{ form.suspect|getname }}:\n"
 		"```\n"
-		"{{ form.explanation }}\n"
-		"```", form=form)
+		"{{ form.subject }}\n"
+		"```", form=commit)
 		# return a page to the web user.
 		return render(request, 'staffmgmt/writeup_complete.html')
 	else:
