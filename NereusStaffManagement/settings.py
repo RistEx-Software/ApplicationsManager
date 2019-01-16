@@ -39,10 +39,16 @@ if DEBUG:
 #EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 ALLOWED_HOSTS = ["*"]
+INTERNAL_IPS = ["10.20.0.*", "127.0.0.1", "::1", "fd86:ea04:1115:*", "67.205.136.72", "2604:a880:400:d0::bd2:8001"]
 
 ADMINS = (
     ('Justin Crawford', 'Justin@stacksmash.net'),
 )
+
+DEFAULT_FROM_EMAIL = "staff@stacksmash.net"
+SERVER_MAIL = DEFAULT_FROM_EMAIL
+EMAIL_SUBJECT_PREFIX = "[Nereus] "
+
 MANAGERS = ADMINS
 
 # Application definition

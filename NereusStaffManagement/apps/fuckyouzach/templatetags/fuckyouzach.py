@@ -8,7 +8,7 @@ register = template.Library()
 def getname(value):
 	if not isinstance(value, User):
 		raise AttributeError("Must be a `User` object")
-
+		
 	if value.first_name and value.last_name:
 		return value.get_full_name()
 	else:

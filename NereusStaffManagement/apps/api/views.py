@@ -20,7 +20,7 @@ def _TemplateManagerMessage(messagecode, **kwargs):
 	_ManagerMessage(t.render(Context(kwargs)))
 
 # Handle 404 errors
-def page_not_found(request):
+def page_not_found(request, exception):
 	return render(request, '404.html', status=404)
 
 # Handle 500 errors
