@@ -1,0 +1,33 @@
+Two Factor Authentication (2FA) for Staff
+=========================================
+
+Upon joining the server you will be asked to use Google Authenticator. This is to prevent unauthorized access
+to your staff account within minecraft 
+
+This allows for 2FA and access to the server from your phone.
+
+This will show you how to setup 2FA for your phone.
+
+
+1. Download Google Authenticator on your phone and open the app.
+2. Enter the secret code into google Authenticator OR open the QR code link and scan the QR code.
+3. Once that has been setup use the code that you have received from there and enter it in game using /confirm <code>
+
+
+Extra:
+
+The Scratch Keys are keys for EMERGENCY USE ONLY. These keys will give you automatic access upon entering them.
+
+Emergency uses such as - Losing your phone, your phone broke, your google authenticator stopped working e.g
+
+
+=================
+More Information:
+=================
+
+If you get a new phone contact a system-admin or higher ASAP. We will give you a new code.
+
+If you happen to run out of emergency codes and still can't access Google Authenticator then contact a system-admin or higher ASAP.
+
+
+If you need help then contact a system-admin or higher.

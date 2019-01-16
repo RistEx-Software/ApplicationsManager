@@ -42,14 +42,20 @@ def register(request):
 	form = RegistrationForm(request.POST, initial=request.GET)
 
 	if request.POST and form.is_valid():
+		cleaned_data = form.clean()
 		if not form.errors:
-			if user_exists(form.cleaned_data.get('username')):
+			if user_exists(cleaned_data.get('username')):
 				raise forms.ValidationError("Sorry, this username is taken.")
 			else:
+				# Do some password validation to ensure it is valid.
+				# I thought that the Django form did this but I guess not.
+				if not validate_password(cleaned_data.get('password1')):
+					raise forms.ValidationError("Your password does not meet the strength requirements.")
+
 				# The user can register, save the form.
 				form.save()
 				# now log them in.
-				user = User.objects.get(username=form.cleaned_data.get('username'))
+				user = User.objects.get(username=cleaned_data.get('username'))
 				auth.login(request, user)
 				# Redirect them to the home.
 				return HttpResponseRedirect(reverse('applications:index'))

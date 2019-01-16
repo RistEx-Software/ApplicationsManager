@@ -26,7 +26,8 @@ urlpatterns = [
     path('', include(('NereusStaffManagement.apps.applications.urls', 'applications'), namespace='applications')),
     path('account/', include(('NereusStaffManagement.apps.accounts.urls', 'account'), namespace = 'account')),
     path('writeup/', include(('NereusStaffManagement.apps.staffmgmt.urls', 'staffmgmt'), namespace = 'staffmgmt')),
-    path('api/', include(('NereusStaffManagement.apps.api.urls', 'api'), namespace='api')),
+    path('api/', include(('NereusStaffManagement.apps.api.urls', 'api'), namespace = 'api')),
+    path('doc/', include(('NereusStaffManagement.apps.docs.urls', 'docs'), namespace='docs')),
 ]
 
 # Set our 404 and 500 error pages

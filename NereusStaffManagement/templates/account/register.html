@@ -11,7 +11,13 @@
 	<div class="bg-text box">
     <form method="post">
         {% csrf_token %}
+		<span class="errors">
+			{% for error, msg in form.error_messages.items %}
+				{{ msg }}
+			{% endfor %}
+		</span>
 		<table>
+		
         {% for field in form %}
 			<tr>
 				<th>{{ field.label_tag }}</th>

@@ -1,0 +1,67 @@
+.. image:: /static/img/nereus2.png
+    :scale: 30 %
+    :height: 996
+    :width: 2000
+    :align: center
+    :alt: Nereus Network
+
+Staff Guidelines
+================
+
+As a staff member you are expected to:
+	- Use common sense
+	- Not abuse your permissions or position for personal or professional advantages
+	- Abide the Discord Terms_ and Guidelines_
+	- Keep all staff-related information provided between your fellow staff members and DO NOT Share this information with anyone else regardless of situation
+	- Respect community members and staff members regardless of the situation
+	- Follow all given commands given by higher-ups, Insubordination can and will result in your termination from the staff team
+	- Know Discord & Minecraft server rules
+
+.. _Terms: https://discordapp.com/terms
+.. _Guidelines: https://discordapp.com/guidelines
+
+=================================
+Punishment Format and reasonings:
+=================================
+
+Mutes
+^^^^^
+    - Spam (Character, repeating phrase, etc): ``/mute player Spam``
+    - Harassment or general rudeness / toxicity (things like "ez", "kys", "diaf", etc): ``/mute player 24h Toxicity ("whatever they said")``
+    - Extreme Profanity: ``/mute player Toxicity``
+    - Advertising: ``/mute player Advertisment ("whatever they said") (perm)``
+    - Light Advertising (Mentioning server name): ``/mute player 12h Light Advertising`` (Only applies if they are trying to drag players with them)
+
+Bans
+^^^^
+	- Cheating (killaura, Anti-KB, etc): ``/ban player Unfair Advantage (List of cheats)``
+	- Light Cheating (Autoclicking, etc): ``/tempban player 14-60d Unfair Advantage (List of cheats)`` (Ban time dependant on type of cheat)
+	- Exploiting bugs: ``/tempban player 30d Unfair Advantage (Exploiting Bugs)``
+	- Inappropriate Username or Skin: ``/ban player Inappropriate Username (Change Username and appeal)`` (perm until appeal)
+	- Blacklist (Note: Not requied but suggested you consult administration before doing a blacklist): Anything deemed worthy of such ban by Moderation
+	- Network Ban (Given by Administration): Anything deemed worthy of such ban by Administration (User will be banned from anything related to Nereus Network and notified of such punishment)
+
+==================================================================
+Approved Mods for Nereus Network (Unless found malicous by Staff):
+==================================================================
+
+    - 5zig v.3.3.6+
+    - Labymod v.2.6+ & Laby Toggle Sprint
+    - Optifine
+    - Too Many Items
+    - Shaders Mods
+    - Capes Mods
+    - Better Animations/Player Animations Mod
+    - Blocks3D Mod
+    - Not Enough Items
+    - Better Sprint Mod
+    - InGame info mod
+    - bspkr's Armor, Direction and Status effect HUDs
+    - UHC Essentials
+    - Joystick mod (or other controller/gamepad mods)
+    - Pop Enchant Tags
+    - Replay Mod
+    - Podcrash+ (This Mod can send screenshots of your game to a private chat at any time it is requested by anyone that has the available permission to do so such as a Podcrash Manager, so use at your own discretion. We recommend against using this Mod.)
+    - Gamma/Brightness mods (in which the only feature is gamma/brightness)
+    - PlexMod
+    - Any mods which have no effect to gameplay such as Pixelmon or Auto-Respawn, etc.

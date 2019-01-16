@@ -36,7 +36,7 @@ TEMPLATE_DEBUG = DEBUG
 if DEBUG:
     EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+#EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 ALLOWED_HOSTS = ["*"]
 
@@ -147,6 +147,8 @@ LOGOUT_REDIRECT_URL = "/"
 # Absolute path to the directory that holds media.
 # Example: "/home/media/media.lawrence.com/"
 MEDIA_ROOT = rel_path('media')
+
+DOCS_ROOT = rel_path('docs')
 
 # URL that handles the media served from MEDIA_ROOT.
 # Example: "http://media.lawrence.com"
