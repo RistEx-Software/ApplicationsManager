@@ -1,0 +1,44 @@
+.. image:: /static/img/nereus2.png
+    :scale: 30 %
+    :height: 996
+    :width: 2000
+    :align: center
+    :alt: Nereus Network
+    
+Nereus Rules
+============
+
+All of the Nereus Network Rules can be found here.
+
+Chat Offenses
+^^^^^^^^^^^^^
+        - Spam (Chat flood, characater spam, etc), A warning will be issued, if continued a mute will be issued.
+        - General Rudeness (Being rude to other players / argueing with players) A warning will be issued, if continued a mute will be issued.
+        - Hackusation (Accusing someone of cheating, use /report in-game, or report it to a staff member via Discord) A warning will be issued, if continued a mute will be issued.
+        - Chat Trolling (Saying something that's meant to be confusing or misleading to others) A warning will be issued, if continued a mute will be issued.
+        - Light Advertising (Mentioning a server's name with intentions to bring players to that server) You will be muted for 12 hours without warning.
+        - Toxicity/Strong Vulgarity (General Toxicity, or strong vulgarity towards other players) A warning will be issued, if continued a mute will be issued.
+        - Rioting (Rioting for/against something.) A mute will be issued without warning. (if you have suggestions use #suggestions)
+
+
+Gameplay Offenses 
+^^^^^^^^^^^^^^^^^
+        - Map/Bug Exploting (Abusing an exploit in the map/server for an advantage) You will be banned without warning. (Up to 1 week)
+        - Bypassing Ban (Using alt account to bypass a ban) You will be Network Banned without warning.
+        - Stat Boosting (Boosting account statistics by unfair means [e.g. AFK Account]) You will be banned without warning. (Up to 30 days on first offense.)
+        - Inappropriate Username/Skin (A username/skin that is deemed inappropriate [e.g. Racism, Drug use, etc]) You will be banned without warning (Permanent until appealed)
+        - Botting (Using programs/scripts on one or more accounts) You will be Network Banned without warning.
+        - Light Cheating (Autoclicking, etc) You will be banned without warning. (up to 30 days.)
+        - Cheating (Reach, KillAura, etc) You will be banned without warning. (Permanent)
+
+
+Ban Types
+^^^^^^^^^
+
+**Temporary Ban**: You will be banned for a set amount of time. The time will expire at which point you may rejoin the service.
+
+**General Ban**: Permanent ban but appealable with proof.
+
+**Blacklist**: Permanent ban but **not** appealable.
+
+**Network Ban**: You will be unable to connect to all Nereus related services. This ban cannot be appealed.
