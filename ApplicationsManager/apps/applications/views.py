@@ -5,8 +5,8 @@ from datetime import datetime
 from django.urls import reverse
 from django.http import HttpResponseRedirect
 from django.http import HttpResponse
-from NereusStaffManagement.apps.applications.models import Application
-from NereusStaffManagement.apps.api.views import _ManagerMessage
+from ApplicationsManager.apps.applications.models import Application
+from ApplicationsManager.apps.api.views import _ManagerMessage
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.decorators import permission_required
 from django.template import Template, Context

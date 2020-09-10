@@ -1,4 +1,4 @@
-"""NereusStaffManagement URL Configuration
+"""ApplicationsManager URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/2.1/topics/http/urls/
@@ -16,7 +16,7 @@ Including another URLconf
 from django.contrib import admin, auth
 from django.contrib.auth import views as auth_views
 from django.urls import path, include
-from NereusStaffManagement.apps.accounts import views as account_views
+from ApplicationsManager.apps.accounts import views as account_views
 
 urlpatterns = [
     path('login/', auth_views.LoginView.as_view(template_name = 'account/login.html'), name = 'login'),

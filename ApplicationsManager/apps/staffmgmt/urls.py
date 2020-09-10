@@ -1,4 +1,4 @@
-"""NereusStaffManagement URL Configuration
+"""ApplicationsManager URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/2.1/topics/http/urls/
@@ -16,11 +16,10 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from NereusStaffManagement.apps.applications import views
+from ApplicationsManager.apps.staffmgmt import views
 
 urlpatterns = [
-	path('', views.index, name='index'),
-	path('apply/', views.apply, name = 'apply'),
-    path('denial/<applicationid>/', views.denialreason, name='denial'),
-	path('view/<applicationid>/', views.viewapplication, name='view'),
+	path('', views.viewwriteups, name = 'list'),
+	path('view/', views.viewwriteup, name = 'view'),
+	path('new/', views.writeup, name='new'),
 ]

@@ -1,4 +1,4 @@
-"""NereusStaffManagement URL Configuration
+"""ApplicationsManager URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/2.1/topics/http/urls/
@@ -18,16 +18,16 @@ from django.urls import path, include
 from django.conf.urls import handler404, handler500
 from django.conf import settings
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
-from NereusStaffManagement.apps.api import views as api_views
+from ApplicationsManager.apps.api import views as api_views
 from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include(('NereusStaffManagement.apps.applications.urls', 'applications'), namespace='applications')),
-    path('account/', include(('NereusStaffManagement.apps.accounts.urls', 'account'), namespace = 'account')),
-    path('writeup/', include(('NereusStaffManagement.apps.staffmgmt.urls', 'staffmgmt'), namespace = 'staffmgmt')),
-    path('api/', include(('NereusStaffManagement.apps.api.urls', 'api'), namespace = 'api')),
-    path('doc/', include(('NereusStaffManagement.apps.docs.urls', 'docs'), namespace='docs')),
+    path('', include(('ApplicationsManager.apps.applications.urls', 'applications'), namespace='applications')),
+    path('account/', include(('ApplicationsManager.apps.accounts.urls', 'account'), namespace = 'account')),
+    path('writeup/', include(('ApplicationsManager.apps.staffmgmt.urls', 'staffmgmt'), namespace = 'staffmgmt')),
+    path('api/', include(('ApplicationsManager.apps.api.urls', 'api'), namespace = 'api')),
+    path('doc/', include(('ApplicationsManager.apps.docs.urls', 'docs'), namespace='docs')),
 ]
 
 # Set our 404 and 500 error pages

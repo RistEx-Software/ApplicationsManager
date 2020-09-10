@@ -1,4 +1,4 @@
-"""NereusStaffManagement URL Configuration
+"""ApplicationsManager URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/2.1/topics/http/urls/
@@ -13,13 +13,10 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-from django.contrib import admin
-from django.urls import path
-
-from NereusStaffManagement.apps.staffmgmt import views
+from django.urls import path, include, re_path
+from ApplicationsManager.apps.docs import views as doc_views
 
 urlpatterns = [
-	path('', views.viewwriteups, name = 'list'),
-	path('view/', views.viewwriteup, name = 'view'),
-	path('new/', views.writeup, name='new'),
+    path('', doc_views.page, dict(path=''), name = 'index'),
+    re_path(r'^(?P<path>[a-zA-Z0-9_\-]+(/[a-zA-Z0-9_\-]+)*)/$', doc_views.page),
 ]

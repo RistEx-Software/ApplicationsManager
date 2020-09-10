@@ -5,7 +5,7 @@ from django.template import Template, Context
 from django import forms
 from django.conf import settings
 import requests, json
-from NereusStaffManagement.apps.applications.models import Application
+from ApplicationsManager.apps.applications.models import Application
 
 # This is mostly an internal function for sending messages to discord
 def _ManagerMessage(message):

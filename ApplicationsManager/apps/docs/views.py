@@ -8,7 +8,7 @@ from django.conf import settings
 import os
 
 def page(request, path):
-	key = 'NereusStaffManagement.apps.doc.page.%s' % (path.replace('/', '.'))
+	key = 'ApplicationsManager.apps.doc.page.%s' % (path.replace('/', '.'))
 	ctx = cache.get(key)
 	# Do not cache when debugging.
 	if not ctx or settings.DEBUG:
